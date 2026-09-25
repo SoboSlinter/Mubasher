@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تسجيل الدخول | عقاري وسيارتي</title>
+<title data-i18n-title="meta.login.title">تسجيل الدخول | مباشر</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
@@ -13,49 +13,52 @@
 
 <div class="auth-page">
   <div class="auth-visual">
-    <div class="brand"><span class="brand-mark">ع</span> عقاري وسيارتي</div>
+    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
     <div class="quote">
-      <h2>منزلك القادم، أو سيارتك التالية، في مكان واحد</h2>
-      <p>سجّل الدخول لمتابعة إعلاناتك المحفوظة، والتواصل مع البائعين، ونشر إعلاناتك الخاصة.</p>
+      <h2 data-i18n="hero.title">منزلك القادم، أو سيارتك التالية، في مكان واحد</h2>
+      <p data-i18n="auth.visualLogin">سجّل الدخول لمتابعة إعلاناتك المحفوظة، والتواصل مع البائعين، ونشر إعلاناتك الخاصة.</p>
     </div>
-    <div class="foot-note">© 2026 عقاري وسيارتي. جميع الحقوق محفوظة.</div>
+    <div class="foot-note" data-i18n="footer.copyright">© 2026 مباشر. جميع الحقوق محفوظة.</div>
   </div>
 
   <div class="auth-form-side">
     <div class="auth-box">
-      <a class="back-link" href="index.html">← العودة إلى الرئيسية</a>
-      <h1>تسجيل الدخول</h1>
-      <p class="sub">أدخل بياناتك للوصول إلى حسابك</p>
+      <div class="back-row">
+        <a class="back-link" href="index.html" data-i18n="auth.backHome">← العودة إلى الرئيسية</a>
+        <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
+      </div>
+      <h1 data-i18n="auth.loginTitle">تسجيل الدخول</h1>
+      <p class="sub" data-i18n="auth.loginSub">أدخل بياناتك للوصول إلى حسابك</p>
 
       <div class="form-status" id="formStatus"></div>
 
       <form id="loginForm" novalidate>
         <div class="form-field" id="emailField">
-          <label for="email">البريد الإلكتروني</label>
+          <label for="email" data-i18n="field.email">البريد الإلكتروني</label>
           <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email">
-          <span class="error-msg">الرجاء إدخال بريد إلكتروني صحيح</span>
+          <span class="error-msg" data-i18n="error.email">الرجاء إدخال بريد إلكتروني صحيح</span>
         </div>
 
         <div class="form-field" id="passwordField">
-          <label for="password">كلمة المرور</label>
+          <label for="password" data-i18n="field.password">كلمة المرور</label>
           <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password">
-          <span class="error-msg">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+          <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
         </div>
 
         <div class="field-row">
           <label class="remember">
             <input type="checkbox" id="remember" name="remember">
-            تذكرني
+            <span data-i18n="auth.remember">تذكرني</span>
           </label>
-          <a class="forgot-link" href="#" id="forgotLink">نسيت كلمة المرور؟</a>
+          <a class="forgot-link" href="#" id="forgotLink" data-i18n="auth.forgot">نسيت كلمة المرور؟</a>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">دخول</button>
+        <button type="submit" class="submit-btn" id="submitBtn" data-i18n="auth.loginBtn">دخول</button>
       </form>
 
-      <div class="divider">أو</div>
+      <div class="divider" data-i18n="auth.or">أو</div>
 
-      <p class="signup-note">ليس لديك حساب؟ <a href="signup.html">إنشاء حساب جديد</a></p>
+      <p class="signup-note"><span data-i18n="auth.noAccount">ليس لديك حساب؟</span> <a href="signup.html" data-i18n="auth.createOne">إنشاء حساب جديد</a></p>
     </div>
   </div>
 </div>
@@ -65,43 +68,43 @@
     <button class="modal-close" id="closeForgot" type="button">✕</button>
 
     <div class="modal-step active" id="forgotStep1">
-      <h3>نسيت كلمة المرور؟</h3>
-      <p class="sub">أدخل بريدك الإلكتروني أو رقم جوالك المسجّل بحسابك</p>
+      <h3 data-i18n="forgot.title">نسيت كلمة المرور؟</h3>
+      <p class="sub" data-i18n="forgot.step1Sub">أدخل بريدك الإلكتروني أو رقم جوالك المسجّل بحسابك</p>
       <div class="form-field" id="identifierField">
-        <label for="identifier">البريد الإلكتروني أو رقم الجوال</label>
-        <input type="text" id="identifier" placeholder="example@email.com أو 09xxxxxxxx">
-        <span class="error-msg">لا يوجد حساب مرتبط بهذه البيانات</span>
+        <label for="identifier" data-i18n="forgot.identifierLabel">البريد الإلكتروني أو رقم الجوال</label>
+        <input type="text" id="identifier" placeholder="example@email.com / 09xxxxxxxx">
+        <span class="error-msg" data-i18n="forgot.identifierError">لا يوجد حساب مرتبط بهذه البيانات</span>
       </div>
-      <button type="button" class="submit-btn" id="sendOtpBtn">إرسال كلمة مرور مؤقتة</button>
+      <button type="button" class="submit-btn" id="sendOtpBtn" data-i18n="forgot.sendBtn">إرسال كلمة مرور مؤقتة</button>
     </div>
 
     <div class="modal-step" id="forgotStep2">
-      <h3>تحقق من كلمة المرور المؤقتة</h3>
-      <p class="sub">أرسلنا كلمة مرور مؤقتة إلى <span id="sentTo"></span></p>
+      <h3 data-i18n="forgot.step2Title">تحقق من كلمة المرور المؤقتة</h3>
+      <p class="sub"><span data-i18n="forgot.sentTo">أرسلنا كلمة مرور مؤقتة إلى</span> <span id="sentTo"></span></p>
       <div class="otp-display" id="otpDisplay"></div>
-      <p class="otp-note">بيئة تجريبية: كلمة المرور المؤقتة معروضة هنا بدلاً من إرسالها فعليًا عبر البريد أو الرسائل.</p>
+      <p class="otp-note" data-i18n="forgot.demoNote">بيئة تجريبية: كلمة المرور المؤقتة معروضة هنا بدلاً من إرسالها فعليًا عبر البريد أو الرسائل.</p>
       <div class="form-field" id="otpField">
-        <label for="otpInput">أدخل كلمة المرور المؤقتة</label>
-        <input type="text" id="otpInput" placeholder="ادخل الرمز المكوّن من 6 أرقام">
-        <span class="error-msg">كلمة المرور المؤقتة غير صحيحة</span>
+        <label for="otpInput" data-i18n="forgot.otpLabel">أدخل كلمة المرور المؤقتة</label>
+        <input type="text" id="otpInput" placeholder="000000">
+        <span class="error-msg" data-i18n="forgot.otpError">كلمة المرور المؤقتة غير صحيحة</span>
       </div>
-      <button type="button" class="submit-btn" id="verifyOtpBtn">تحقق</button>
+      <button type="button" class="submit-btn" id="verifyOtpBtn" data-i18n="forgot.verifyBtn">تحقق</button>
     </div>
 
     <div class="modal-step" id="forgotStep3">
-      <h3>تعيين كلمة مرور جديدة</h3>
-      <p class="sub">كلمة المرور المؤقتة صالحة لاستخدام واحد فقط. عيّن كلمة مرور جديدة لحسابك</p>
+      <h3 data-i18n="forgot.step3Title">تعيين كلمة مرور جديدة</h3>
+      <p class="sub" data-i18n="forgot.step3Sub">كلمة المرور المؤقتة صالحة لاستخدام واحد فقط. عيّن كلمة مرور جديدة لحسابك</p>
       <div class="form-field" id="newPasswordField">
-        <label for="newPassword">كلمة المرور الجديدة</label>
+        <label for="newPassword" data-i18n="forgot.newPassword">كلمة المرور الجديدة</label>
         <input type="password" id="newPassword" placeholder="••••••••">
-        <span class="error-msg">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+        <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
       </div>
       <div class="form-field" id="newPasswordConfirmField">
-        <label for="newPasswordConfirm">تأكيد كلمة المرور</label>
+        <label for="newPasswordConfirm" data-i18n="field.confirmPassword">تأكيد كلمة المرور</label>
         <input type="password" id="newPasswordConfirm" placeholder="••••••••">
-        <span class="error-msg">كلمتا المرور غير متطابقتين</span>
+        <span class="error-msg" data-i18n="error.confirmPassword">كلمتا المرور غير متطابقتين</span>
       </div>
-      <button type="button" class="submit-btn" id="resetPasswordBtn">تعيين كلمة المرور والدخول</button>
+      <button type="button" class="submit-btn" id="resetPasswordBtn" data-i18n="forgot.resetBtn">تعيين كلمة المرور والدخول</button>
     </div>
   </div>
 </div>

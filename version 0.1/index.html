@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عقاري وسيارتي | عقارات وسيارات للبيع والإيجار</title>
+<title data-i18n-title="meta.home.title">مباشر | عقارات وسيارات للبيع والإيجار</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
@@ -13,147 +13,97 @@
 
 <header>
   <div class="wrap nav-row">
-    <div class="brand"><span class="brand-mark">ع</span> عقاري وسيارتي</div>
+    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
     <nav class="links">
-      <a href="#realestate">عقارات</a>
-      <a href="#cars">سيارات</a>
-      <a href="add-listing.html">أضف إعلانك</a>
-      <a href="#about">من نحن</a>
+      <a href="#realestate" data-i18n="nav.realestate">عقارات</a>
+      <a href="#cars" data-i18n="nav.cars">سيارات</a>
+      <a href="add-listing.html" data-i18n="nav.addListing">أضف إعلانك</a>
+      <a href="messages.html" id="navMessagesLink" data-i18n="nav.messages" style="display:none;">رسائلي</a>
+      <a href="#about" data-i18n="nav.about">من نحن</a>
     </nav>
     <div class="auth-actions" id="authActions">
-      <a class="btn btn-ghost" href="login.html" id="navLoginBtn">تسجيل الدخول</a>
-      <a class="btn btn-solid" href="signup.html" id="navSignupBtn">إنشاء حساب</a>
+      <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
+      <a class="btn btn-ghost" href="login.html" id="navLoginBtn" data-i18n="auth.login">تسجيل الدخول</a>
+      <a class="btn btn-solid" href="signup.html" id="navSignupBtn" data-i18n="auth.signup">إنشاء حساب</a>
     </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap hero-inner">
-    <div class="hero-eyebrow">منصة موثوقة للبيع والشراء</div>
-    <h1>منزلك القادم، أو سيارتك التالية، في مكان واحد</h1>
-    <p>آلاف الإعلانات المُحقّقة للعقارات والسيارات والأراضي، من أصحابها مباشرة أو عبر وسطاء معتمدين.</p>
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow">منصة موثوقة للبيع والشراء</div>
+    <h1 data-i18n="hero.title">منزلك القادم، أو سيارتك التالية، في مكان واحد</h1>
+    <p data-i18n="hero.subtitle">آلاف الإعلانات المُحقّقة للعقارات والسيارات والأراضي، من أصحابها مباشرة أو عبر وسطاء معتمدين.</p>
 
     <div class="search-panel">
       <div class="search-tabs">
-        <div class="search-tab active">عقارات</div>
-        <div class="search-tab">أراضي</div>
-        <div class="search-tab">سيارات</div>
-        <div class="search-tab">دراجات نارية</div>
+        <div class="search-tab active" data-i18n="search.tab.realestate">عقارات</div>
+        <div class="search-tab" data-i18n="search.tab.land">أراضي</div>
+        <div class="search-tab" data-i18n="search.tab.cars">سيارات</div>
+        <div class="search-tab" data-i18n="search.tab.moto">دراجات نارية</div>
       </div>
       <div class="field">
-        <label>المدينة</label>
+        <label data-i18n="search.city.label">المدينة</label>
         <select>
-          <option>الخرطوم</option>
-          <option>أم درمان</option>
-          <option>بحري</option>
-          <option>مدني</option>
+          <option data-i18n="city.khartoum">الخرطوم</option>
+          <option data-i18n="city.omdurman">أم درمان</option>
+          <option data-i18n="city.bahri">بحري</option>
+          <option data-i18n="city.madani">مدني</option>
         </select>
       </div>
       <div class="field">
-        <label>نوع العرض</label>
+        <label data-i18n="search.offerType.label">نوع العرض</label>
         <select>
-          <option>للبيع</option>
-          <option>للإيجار</option>
+          <option data-i18n="offer.sale">للبيع</option>
+          <option data-i18n="offer.rent">للإيجار</option>
         </select>
       </div>
       <div class="field">
-        <label>الميزانية</label>
+        <label data-i18n="search.budget.label">الميزانية</label>
         <select>
-          <option>أقل من 500 ألف</option>
-          <option>500 ألف - مليون</option>
-          <option>أكثر من مليون</option>
+          <option data-i18n="budget.low">أقل من 500 ألف</option>
+          <option data-i18n="budget.mid">500 ألف - مليون</option>
+          <option data-i18n="budget.high">أكثر من مليون</option>
         </select>
       </div>
-      <button class="btn btn-solid">ابحث الآن</button>
+      <button class="btn btn-solid" data-i18n="search.cta">ابحث الآن</button>
     </div>
   </div>
 </section>
 
 <section class="wrap">
   <div class="category-strip">
-    <div class="cat-card"><div class="cat-icon">⌂</div><div><h3>شقق وفلل</h3><span>3٬240 إعلان</span></div></div>
-    <div class="cat-card"><div class="cat-icon">▦</div><div><h3>أراضي</h3><span>1٬180 إعلان</span></div></div>
-    <div class="cat-card"><div class="cat-icon">🚗</div><div><h3>سيارات</h3><span>2٬560 إعلان</span></div></div>
-    <div class="cat-card"><div class="cat-icon">🏢</div><div><h3>عقارات تجارية</h3><span>640 إعلان</span></div></div>
-    <div class="cat-card"><div class="cat-icon">🏍</div><div><h3>دراجات نارية</h3><span>310 إعلان</span></div></div>
+    <div class="cat-card"><div class="cat-icon">⌂</div><div><h3 data-i18n="cat.apartments.title">شقق وفلل</h3><span data-i18n="cat.apartments.count">3٬240 إعلان</span></div></div>
+    <div class="cat-card"><div class="cat-icon">▦</div><div><h3 data-i18n="cat.land.title">أراضي</h3><span data-i18n="cat.land.count">1٬180 إعلان</span></div></div>
+    <div class="cat-card"><div class="cat-icon">🚗</div><div><h3 data-i18n="cat.cars.title">سيارات</h3><span data-i18n="cat.cars.count">2٬560 إعلان</span></div></div>
+    <div class="cat-card"><div class="cat-icon">🏢</div><div><h3 data-i18n="cat.commercial.title">عقارات تجارية</h3><span data-i18n="cat.commercial.count">640 إعلان</span></div></div>
+    <div class="cat-card"><div class="cat-icon">🏍</div><div><h3 data-i18n="cat.moto.title">دراجات نارية</h3><span data-i18n="cat.moto.count">310 إعلان</span></div></div>
   </div>
 </section>
 
 <section class="wrap" id="realestate">
   <div class="section-head">
     <div>
-      <h2>أحدث العقارات</h2>
-      <p>فلل وشقق وأراضي مختارة بعناية هذا الأسبوع</p>
+      <h2 data-i18n="realestate.heading">أحدث العقارات</h2>
+      <p data-i18n="realestate.sub">فلل وشقق وأراضي مختارة بعناية هذا الأسبوع</p>
     </div>
-    <a class="see-all" href="#">عرض جميع العقارات</a>
+    <a class="see-all" href="#" data-i18n="realestate.seeAll">عرض جميع العقارات</a>
   </div>
-  <div class="grid">
-    <div class="card">
-      <div class="card-media m1"><span class="badge sale">للبيع</span></div>
-      <div class="card-body">
-        <div class="card-price">1٬250٬000 ج.س</div>
-        <div class="card-title">فيلا دوبلكس راقية بحي الياسمين</div>
-        <div class="card-loc">الخرطوم — حي الرياض</div>
-        <div class="card-specs"><span><b>5</b> غرف</span><span><b>420</b> م²</span><span><b>4</b> حمامات</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-media m2"><span class="badge">للإيجار</span></div>
-      <div class="card-body">
-        <div class="card-price">4٬500 ج.س / شهرياً</div>
-        <div class="card-title">شقة مفروشة بإطلالة على الكورنيش</div>
-        <div class="card-loc">أم درمان — الثورة</div>
-        <div class="card-specs"><span><b>2</b> غرف</span><span><b>140</b> م²</span><span><b>2</b> حمامات</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-media m3"><span class="badge sale">للبيع</span></div>
-      <div class="card-body">
-        <div class="card-price">680٬000 ج.س</div>
-        <div class="card-title">قطعة أرض سكنية مخططة</div>
-        <div class="card-loc">بحري — الكدرو</div>
-        <div class="card-specs"><span><b>500</b> م²</span><span>زاوية</span><span>صك إلكتروني</span></div>
-      </div>
-    </div>
+  <div class="grid" id="realestateGrid">
+    <!-- تُعرض الإعلانات المنشورة فعليًا هنا تلقائيًا -->
   </div>
 </section>
 
 <section class="wrap" id="cars">
   <div class="section-head">
     <div>
-      <h2>أحدث السيارات</h2>
-      <p>سيارات مفحوصة وموثقة من أصحابها</p>
+      <h2 data-i18n="cars.heading">أحدث السيارات</h2>
+      <p data-i18n="cars.sub">سيارات مفحوصة وموثقة من أصحابها</p>
     </div>
-    <a class="see-all" href="#">عرض جميع السيارات</a>
+    <a class="see-all" href="#" data-i18n="cars.seeAll">عرض جميع السيارات</a>
   </div>
-  <div class="grid">
-    <div class="card">
-      <div class="card-media m4"><span class="badge sale">للبيع</span></div>
-      <div class="card-body">
-        <div class="card-price">96٬000 ج.س</div>
-        <div class="card-title">تويوتا لاندكروزر GXR 2023</div>
-        <div class="card-loc">الخرطوم</div>
-        <div class="card-specs"><span><b>28</b> ألف كم</span><span>أوتوماتيك</span><span>بنزين</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-media m5"><span class="badge sale">للبيع</span></div>
-      <div class="card-body">
-        <div class="card-price">61٬500 ج.س</div>
-        <div class="card-title">هيونداي سوناتا 2022 فل كامل</div>
-        <div class="card-loc">أم درمان</div>
-        <div class="card-specs"><span><b>41</b> ألف كم</span><span>أوتوماتيك</span><span>بنزين</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-media m6"><span class="badge sale">للبيع</span></div>
-      <div class="card-body">
-        <div class="card-price">142٬000 ج.س</div>
-        <div class="card-title">مرسيدس C200 موديل 2024</div>
-        <div class="card-loc">بحري</div>
-        <div class="card-specs"><span><b>9</b> آلاف كم</span><span>أوتوماتيك</span><span>ضمان الوكالة</span></div>
-      </div>
-    </div>
+  <div class="grid" id="vehiclesGrid">
+    <!-- تُعرض الإعلانات المنشورة فعليًا هنا تلقائيًا -->
   </div>
 </section>
 
@@ -161,14 +111,14 @@
   <div class="wrap promo-inner">
     <div class="promo-media"></div>
     <div class="promo-text">
-      <h2>عندك عقار أو سيارة تبيعها؟</h2>
-      <p>انشر إعلانك مجاناً ويصل لآلاف المهتمين الجادين خلال دقائق.</p>
+      <h2 data-i18n="promo.heading">عندك عقار أو سيارة تبيعها؟</h2>
+      <p data-i18n="promo.sub">انشر إعلانك مجاناً ويصل لآلاف المهتمين الجادين خلال دقائق.</p>
       <ul class="promo-list">
-        <li>نشر الإعلان خلال دقائق بدون تعقيد</li>
-        <li>توثيق الإعلانات لحماية البائع والمشتري</li>
-        <li>تواصل مباشر مع المهتمين عبر المنصة</li>
+        <li data-i18n="promo.point1">نشر الإعلان خلال دقائق بدون تعقيد</li>
+        <li data-i18n="promo.point2">توثيق الإعلانات لحماية البائع والمشتري</li>
+        <li data-i18n="promo.point3">تواصل مباشر مع المهتمين عبر المنصة</li>
       </ul>
-      <a class="btn btn-solid" href="add-listing.html">أضف إعلانك الآن</a>
+      <a class="btn btn-solid" href="add-listing.html" data-i18n="promo.cta">أضف إعلانك الآن</a>
     </div>
   </div>
 </section>
@@ -176,23 +126,37 @@
 <footer id="about">
   <div class="wrap foot-grid">
     <div>
-      <div class="foot-brand">عقاري وسيارتي</div>
-      <p style="max-width:280px; font-size:14px;">منصة سودانية لعرض وبيع وشراء العقارات والأراضي والسيارات والدراجات النارية مباشرة بين الأفراد والوسطاء.</p>
+      <div class="foot-brand" data-i18n="brand.name">مباشر</div>
+      <p style="max-width:280px; font-size:14px;" data-i18n="footer.about">منصة سودانية لعرض وبيع وشراء العقارات والأراضي والسيارات والدراجات النارية مباشرة بين الأفراد والوسطاء.</p>
     </div>
     <div>
-      <h4>الأقسام</h4>
-      <ul><li>عقارات للبيع</li><li>عقارات للإيجار</li><li>أراضي</li><li>سيارات</li><li>دراجات نارية</li></ul>
+      <h4 data-i18n="footer.sections.heading">الأقسام</h4>
+      <ul>
+        <li data-i18n="footer.sections.saleRealestate">عقارات للبيع</li>
+        <li data-i18n="footer.sections.rentRealestate">عقارات للإيجار</li>
+        <li data-i18n="footer.sections.land">أراضي</li>
+        <li data-i18n="footer.sections.cars">سيارات</li>
+        <li data-i18n="footer.sections.moto">دراجات نارية</li>
+      </ul>
     </div>
     <div>
-      <h4>الشركة</h4>
-      <ul><li>من نحن</li><li>تواصل معنا</li><li>الأسئلة الشائعة</li></ul>
+      <h4 data-i18n="footer.company.heading">الشركة</h4>
+      <ul>
+        <li data-i18n="footer.company.about">من نحن</li>
+        <li data-i18n="footer.company.contact">تواصل معنا</li>
+        <li data-i18n="footer.company.faq">الأسئلة الشائعة</li>
+      </ul>
     </div>
     <div>
-      <h4>تواصل</h4>
-      <ul><li>الدعم الفني</li><li>الشروط والأحكام</li><li>سياسة الخصوصية</li></ul>
+      <h4 data-i18n="footer.contact.heading">تواصل</h4>
+      <ul>
+        <li data-i18n="footer.contact.support">الدعم الفني</li>
+        <li><a href="terms.html" data-i18n="footer.contact.terms">الشروط والأحكام</a></li>
+        <li><a href="privacy.html" data-i18n="footer.contact.privacy">سياسة الخصوصية</a></li>
+      </ul>
     </div>
   </div>
-  <div class="wrap foot-bottom">© 2026 عقاري وسيارتي. جميع الحقوق محفوظة.</div>
+  <div class="wrap foot-bottom" data-i18n="footer.copyright">© 2026 مباشر. جميع الحقوق محفوظة.</div>
 </footer>
 
 <script src="script.js"></script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n-title="meta.messages.title">رسائلي | مباشر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="listing-page">
+
+<header class="listing-header">
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
+      <a class="btn btn-ghost" href="index.html" data-i18n="auth.backHomeShort">العودة إلى الرئيسية</a>
+    </div>
+  </div>
+</header>
+
+<main class="listing-main" id="messagesRoot">
+  <div class="wrap">
+    <div class="listing-intro">
+      <h1 data-i18n="messages.heading">رسائلي</h1>
+      <p data-i18n="messages.sub">تابع محادثاتك مع أصحاب الإعلانات والمهتمين بإعلاناتك.</p>
+    </div>
+
+    <div class="listing-form-card" id="messagesLoginNotice" style="display:none;">
+      <p data-i18n="messages.loginNotice">يجب تسجيل الدخول لعرض رسائلك.</p>
+      <div class="auth-required-actions">
+        <a class="btn btn-solid" href="login.html" data-i18n="auth.login">تسجيل الدخول</a>
+        <a class="btn btn-ghost" href="signup.html" data-i18n="auth.signup">إنشاء حساب</a>
+      </div>
+    </div>
+
+    <div class="listing-form-card" id="messagesEmptyState" style="display:none;">
+      <p data-i18n="messages.emptyState">لا توجد رسائل بعد. تصفح الإعلانات وابدأ محادثة مع صاحب أي إعلان يهمك.</p>
+    </div>
+
+    <div class="threads-list" id="threadsList"></div>
+  </div>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

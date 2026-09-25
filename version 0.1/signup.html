@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إنشاء حساب | عقاري وسيارتي</title>
+<title data-i18n-title="meta.signup.title">إنشاء حساب | مباشر</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
@@ -13,64 +13,92 @@
 
 <div class="auth-page">
   <div class="auth-visual">
-    <div class="brand"><span class="brand-mark">ع</span> عقاري وسيارتي</div>
+    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
     <div class="quote">
-      <h2>انضم إلى آلاف المستخدمين الذين يبيعون ويشترون بثقة</h2>
-      <p>أنشئ حسابك لتتمكن من حفظ الإعلانات، ونشر عقاراتك وسياراتك، والتواصل المباشر مع المهتمين.</p>
+      <h2 data-i18n="auth.visualSignupTitle">انضم إلى آلاف المستخدمين الذين يبيعون ويشترون بثقة</h2>
+      <p data-i18n="auth.visualSignupSub">أنشئ حسابك لتتمكن من حفظ الإعلانات، ونشر عقاراتك وسياراتك، والتواصل المباشر مع المهتمين.</p>
     </div>
-    <div class="foot-note">© 2026 عقاري وسيارتي. جميع الحقوق محفوظة.</div>
+    <div class="foot-note" data-i18n="footer.copyright">© 2026 مباشر. جميع الحقوق محفوظة.</div>
   </div>
 
   <div class="auth-form-side">
     <div class="auth-box">
-      <a class="back-link" href="index.html">← العودة إلى الرئيسية</a>
-      <h1>إنشاء حساب جديد</h1>
-      <p class="sub">املأ بياناتك للبدء في استخدام المنصة</p>
+      <div class="back-row">
+        <a class="back-link" href="index.html" data-i18n="auth.backHome">← العودة إلى الرئيسية</a>
+        <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
+      </div>
+      <h1 data-i18n="auth.signupTitle">إنشاء حساب جديد</h1>
+      <p class="sub" data-i18n="auth.signupSub">املأ بياناتك للبدء في استخدام المنصة</p>
 
       <div class="form-status" id="formStatus"></div>
 
       <form id="signupForm" novalidate>
         <div class="form-field" id="nameField">
-          <label for="fullName">الاسم الكامل</label>
-          <input type="text" id="fullName" name="fullName" placeholder="مثال: محمد أحمد" autocomplete="name">
-          <span class="error-msg">الرجاء إدخال الاسم الكامل</span>
+          <label for="fullName" data-i18n="field.fullName">الاسم الكامل</label>
+          <input type="text" id="fullName" name="fullName" placeholder="محمد أحمد" autocomplete="name">
+          <span class="error-msg" data-i18n="error.fullName">الرجاء إدخال الاسم الكامل</span>
         </div>
 
         <div class="form-field" id="emailField">
-          <label for="email">البريد الإلكتروني</label>
+          <label for="email" data-i18n="field.email">البريد الإلكتروني</label>
           <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email">
-          <span class="error-msg">الرجاء إدخال بريد إلكتروني صحيح</span>
+          <span class="error-msg" data-i18n="error.email">الرجاء إدخال بريد إلكتروني صحيح</span>
         </div>
 
         <div class="form-field" id="phoneField">
-          <label for="phone">رقم الجوال</label>
-          <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" autocomplete="tel">
-          <span class="error-msg">الرجاء إدخال رقم جوال صحيح (10 أرقام)</span>
+          <label for="phone" data-i18n="field.phone">رقم الجوال</label>
+          <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxx" autocomplete="tel">
+          <span class="error-msg" data-i18n="error.phone">الرجاء إدخال رقم جوال صحيح (10 أرقام)</span>
         </div>
 
         <div class="form-field" id="passwordField">
-          <label for="password">كلمة المرور</label>
+          <label for="password" data-i18n="field.password">كلمة المرور</label>
           <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password">
-          <span class="error-msg">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+          <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
         </div>
 
         <div class="form-field" id="confirmField">
-          <label for="confirmPassword">تأكيد كلمة المرور</label>
+          <label for="confirmPassword" data-i18n="field.confirmPassword">تأكيد كلمة المرور</label>
           <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" autocomplete="new-password">
-          <span class="error-msg">كلمتا المرور غير متطابقتين</span>
+          <span class="error-msg" data-i18n="error.confirmPassword">كلمتا المرور غير متطابقتين</span>
+        </div>
+
+        <div class="form-section-title" data-i18n="plan.title">اختر خطة الاشتراك</div>
+        <p class="plan-intro" data-i18n="plan.intro">اشتراك شهري لنشر إعلاناتك على المنصة، بإمكانك الدفع شهريًا أو الدفع سنويًا بخصم.</p>
+        <div class="plan-picker" id="planPicker">
+          <label class="plan-option active" data-plan="monthly">
+            <input type="radio" name="plan" value="monthly" id="planMonthly" checked>
+            <span class="plan-name" data-i18n="plan.monthly.name">شهري</span>
+            <span class="plan-price">20٬000 <span class="plan-currency-unit" data-i18n="plan.currency">ج.س</span></span>
+            <span class="plan-period" data-i18n="plan.perMonth">شهريًا</span>
+          </label>
+          <label class="plan-option" data-plan="yearly">
+            <span class="plan-badge" data-i18n="plan.yearly.badge">خصم 17%</span>
+            <input type="radio" name="plan" value="yearly" id="planYearly">
+            <span class="plan-name" data-i18n="plan.yearly.name">سنوي</span>
+            <span class="plan-price">199٬000 <span class="plan-currency-unit" data-i18n="plan.currency">ج.س</span></span>
+            <span class="plan-period" data-i18n="plan.perYear">سنويًا</span>
+            <span class="plan-savings" data-i18n="plan.yearly.savings">توفّر 41٬000 ج.س سنويًا مقارنة بالدفع الشهري</span>
+            <span class="plan-compare-note" data-i18n="plan.yearly.compareNote">بدلاً من 240٬000 ج.س عند الدفع شهريًا (20٬000 × 12 شهرًا)</span>
+          </label>
         </div>
 
         <label class="terms-row">
           <input type="checkbox" id="terms" name="terms">
-          <span>أوافق على <a href="#">الشروط والأحكام</a> و<a href="#">سياسة الخصوصية</a></span>
+          <span>
+            <span data-i18n="auth.agreeTo">أوافق على</span>
+            <a href="terms.html" data-i18n="footer.contact.terms">الشروط والأحكام</a>
+            <span data-i18n="auth.and">و</span>
+            <a href="privacy.html" data-i18n="footer.contact.privacy">سياسة الخصوصية</a>
+          </span>
         </label>
 
-        <button type="submit" class="submit-btn" id="submitBtn">إنشاء الحساب</button>
+        <button type="submit" class="submit-btn" id="submitBtn" data-i18n="auth.signupBtn">إنشاء الحساب</button>
       </form>
 
-      <div class="divider">أو</div>
+      <div class="divider" data-i18n="auth.or">أو</div>
 
-      <p class="signup-note">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+      <p class="signup-note"><span data-i18n="auth.hasAccount">لديك حساب بالفعل؟</span> <a href="login.html" data-i18n="auth.login">تسجيل الدخول</a></p>
     </div>
   </div>
 </div>

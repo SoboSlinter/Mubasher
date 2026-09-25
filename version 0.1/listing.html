@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n-title="meta.listingDetail.title">تفاصيل الإعلان | مباشر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="listing-page">
+
+<header class="listing-header">
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
+      <a class="btn btn-ghost" href="index.html" data-i18n="auth.backHomeShort">العودة إلى الرئيسية</a>
+    </div>
+  </div>
+</header>
+
+<main class="listing-main" id="listingDetailRoot">
+  <div class="wrap">
+
+    <div class="listing-form-card" id="listingNotFound" style="display:none;">
+      <h1 data-i18n="listingPage.notFoundTitle">الإعلان غير موجود</h1>
+      <p data-i18n="listingPage.notFoundBody">قد يكون هذا الإعلان قد حُذف أو أن الرابط غير صحيح.</p>
+      <a class="btn btn-solid" href="index.html" data-i18n="listingPage.detailBack">← رجوع لكل الإعلانات</a>
+    </div>
+
+    <div class="listing-intro">
+      <a class="see-all" href="index.html" data-i18n="listingPage.detailBack">← رجوع لكل الإعلانات</a>
+    </div>
+
+    <div class="detail-layout" id="listingDetailContent">
+
+      <div class="detail-gallery">
+        <img id="mainPhoto" alt="" class="main-photo">
+        <div class="no-photo-placeholder" id="noPhotoPlaceholder" data-i18n="listingPage.galleryNoPhotos" style="display:none;">لا توجد صور مرفقة لهذا الإعلان</div>
+        <div class="thumb-strip" id="thumbStrip"></div>
+      </div>
+
+      <div class="detail-info">
+        <span class="badge sale detail-category" id="detailCategory"></span>
+        <div class="detail-price" id="detailPrice"></div>
+        <h1 class="detail-title" id="detailTitle"></h1>
+        <div class="detail-loc" id="detailLoc"></div>
+
+        <div class="detail-specs" id="detailSpecs"></div>
+
+        <div class="form-section-title" data-i18n="listingPage.descTitle">وصف الإعلان</div>
+        <p class="detail-description" id="detailDescription"></p>
+
+        <div class="contact-panel">
+          <div class="form-section-title" data-i18n="listingPage.sendMessageBtn">إرسال الرسالة</div>
+
+          <p class="contact-note" id="ownAdNote" data-i18n="listingPage.ownAdNote" style="display:none;">هذا إعلانك الخاص. يمكنك متابعة الرسائل الواردة بخصوصه من صفحة رسائلي.</p>
+
+          <div class="contact-note" id="loginToMessage" style="display:none;">
+            <p data-i18n="listingPage.loginToMessagePrompt">يجب تسجيل الدخول للتواصل مع صاحب الإعلان.</p>
+            <div class="auth-required-actions">
+              <a class="btn btn-solid" href="login.html" data-i18n="auth.login">تسجيل الدخول</a>
+              <a class="btn btn-ghost" href="signup.html" data-i18n="auth.signup">إنشاء حساب</a>
+            </div>
+          </div>
+
+          <div id="messageFormWrap" style="display:none;">
+            <div class="thread-messages" id="threadMessages"></div>
+            <form id="messageForm">
+              <div class="form-field">
+                <textarea id="messageText" data-i18n-placeholder="listingPage.messagePlaceholder" placeholder="اكتب رسالتك لصاحب الإعلان هنا..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-solid" data-i18n="listingPage.sendMessageBtn">إرسال الرسالة</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
