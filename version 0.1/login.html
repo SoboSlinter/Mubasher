@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول | عقاري وسيارتي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="auth-page">
+  <div class="auth-visual">
+    <div class="brand"><span class="brand-mark">ع</span> عقاري وسيارتي</div>
+    <div class="quote">
+      <h2>منزلك القادم، أو سيارتك التالية، في مكان واحد</h2>
+      <p>سجّل الدخول لمتابعة إعلاناتك المحفوظة، والتواصل مع البائعين، ونشر إعلاناتك الخاصة.</p>
+    </div>
+    <div class="foot-note">© 2026 عقاري وسيارتي. جميع الحقوق محفوظة.</div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-box">
+      <a class="back-link" href="index.html">← العودة إلى الرئيسية</a>
+      <h1>تسجيل الدخول</h1>
+      <p class="sub">أدخل بياناتك للوصول إلى حسابك</p>
+
+      <div class="form-status" id="formStatus"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-field" id="emailField">
+          <label for="email">البريد الإلكتروني</label>
+          <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email">
+          <span class="error-msg">الرجاء إدخال بريد إلكتروني صحيح</span>
+        </div>
+
+        <div class="form-field" id="passwordField">
+          <label for="password">كلمة المرور</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password">
+          <span class="error-msg">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+        </div>
+
+        <div class="field-row">
+          <label class="remember">
+            <input type="checkbox" id="remember" name="remember">
+            تذكرني
+          </label>
+          <a class="forgot-link" href="#" id="forgotLink">نسيت كلمة المرور؟</a>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">دخول</button>
+      </form>
+
+      <div class="divider">أو</div>
+
+      <p class="signup-note">ليس لديك حساب؟ <a href="signup.html">إنشاء حساب جديد</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="forgotModal">
+  <div class="modal">
+    <button class="modal-close" id="closeForgot" type="button">✕</button>
+
+    <div class="modal-step active" id="forgotStep1">
+      <h3>نسيت كلمة المرور؟</h3>
+      <p class="sub">أدخل بريدك الإلكتروني أو رقم جوالك المسجّل بحسابك</p>
+      <div class="form-field" id="identifierField">
+        <label for="identifier">البريد الإلكتروني أو رقم الجوال</label>
+        <input type="text" id="identifier" placeholder="example@email.com أو 09xxxxxxxx">
+        <span class="error-msg">لا يوجد حساب مرتبط بهذه البيانات</span>
+      </div>
+      <button type="button" class="submit-btn" id="sendOtpBtn">إرسال كلمة مرور مؤقتة</button>
+    </div>
+
+    <div class="modal-step" id="forgotStep2">
+      <h3>تحقق من كلمة المرور المؤقتة</h3>
+      <p class="sub">أرسلنا كلمة مرور مؤقتة إلى <span id="sentTo"></span></p>
+      <div class="otp-display" id="otpDisplay"></div>
+      <p class="otp-note">بيئة تجريبية: كلمة المرور المؤقتة معروضة هنا بدلاً من إرسالها فعليًا عبر البريد أو الرسائل.</p>
+      <div class="form-field" id="otpField">
+        <label for="otpInput">أدخل كلمة المرور المؤقتة</label>
+        <input type="text" id="otpInput" placeholder="ادخل الرمز المكوّن من 6 أرقام">
+        <span class="error-msg">كلمة المرور المؤقتة غير صحيحة</span>
+      </div>
+      <button type="button" class="submit-btn" id="verifyOtpBtn">تحقق</button>
+    </div>
+
+    <div class="modal-step" id="forgotStep3">
+      <h3>تعيين كلمة مرور جديدة</h3>
+      <p class="sub">كلمة المرور المؤقتة صالحة لاستخدام واحد فقط. عيّن كلمة مرور جديدة لحسابك</p>
+      <div class="form-field" id="newPasswordField">
+        <label for="newPassword">كلمة المرور الجديدة</label>
+        <input type="password" id="newPassword" placeholder="••••••••">
+        <span class="error-msg">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+      </div>
+      <div class="form-field" id="newPasswordConfirmField">
+        <label for="newPasswordConfirm">تأكيد كلمة المرور</label>
+        <input type="password" id="newPasswordConfirm" placeholder="••••••••">
+        <span class="error-msg">كلمتا المرور غير متطابقتين</span>
+      </div>
+      <button type="button" class="submit-btn" id="resetPasswordBtn">تعيين كلمة المرور والدخول</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

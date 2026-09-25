@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إنشاء حساب | عقاري وسيارتي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="auth-page">
+  <div class="auth-visual">
+    <div class="brand"><span class="brand-mark">ع</span> عقاري وسيارتي</div>
+    <div class="quote">
+      <h2>انضم إلى آلاف المستخدمين الذين يبيعون ويشترون بثقة</h2>
+      <p>أنشئ حسابك لتتمكن من حفظ الإعلانات، ونشر عقاراتك وسياراتك، والتواصل المباشر مع المهتمين.</p>
+    </div>
+    <div class="foot-note">© 2026 عقاري وسيارتي. جميع الحقوق محفوظة.</div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-box">
+      <a class="back-link" href="index.html">← العودة إلى الرئيسية</a>
+      <h1>إنشاء حساب جديد</h1>
+      <p class="sub">املأ بياناتك للبدء في استخدام المنصة</p>
+
+      <div class="form-status" id="formStatus"></div>
+
+      <form id="signupForm" novalidate>
+        <div class="form-field" id="nameField">
+          <label for="fullName">الاسم الكامل</label>
+          <input type="text" id="fullName" name="fullName" placeholder="مثال: محمد أحمد" autocomplete="name">
+          <span class="error-msg">الرجاء إدخال الاسم الكامل</span>
+        </div>
+
+        <div class="form-field" id="emailField">
+          <label for="email">البريد الإلكتروني</label>
+          <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email">
+          <span class="error-msg">الرجاء إدخال بريد إلكتروني صحيح</span>
+        </div>
+
+        <div class="form-field" id="phoneField">
+          <label for="phone">رقم الجوال</label>
+          <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" autocomplete="tel">
+          <span class="error-msg">الرجاء إدخال رقم جوال صحيح (10 أرقام)</span>
+        </div>
+
+        <div class="form-field" id="passwordField">
+          <label for="password">كلمة المرور</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password">
+          <span class="error-msg">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+        </div>
+
+        <div class="form-field" id="confirmField">
+          <label for="confirmPassword">تأكيد كلمة المرور</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" autocomplete="new-password">
+          <span class="error-msg">كلمتا المرور غير متطابقتين</span>
+        </div>
+
+        <label class="terms-row">
+          <input type="checkbox" id="terms" name="terms">
+          <span>أوافق على <a href="#">الشروط والأحكام</a> و<a href="#">سياسة الخصوصية</a></span>
+        </label>
+
+        <button type="submit" class="submit-btn" id="submitBtn">إنشاء الحساب</button>
+      </form>
+
+      <div class="divider">أو</div>
+
+      <p class="signup-note">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أضف إعلانك | عقاري وسيارتي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="listing-page">
+
+<header class="listing-header">
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark">ع</span> عقاري وسيارتي</div>
+    <a class="btn btn-ghost" href="index.html">العودة إلى الرئيسية</a>
+  </div>
+</header>
+
+<main class="listing-main">
+  <div class="wrap">
+    <div class="listing-intro">
+      <h1>أضف إعلانك</h1>
+      <p>اختر نوع ما تعرضه، وأدخل التفاصيل. جميع الأسعار بالجنيه السوداني.</p>
+    </div>
+
+    <div class="listing-form-card">
+      <div class="form-status" id="formStatus"></div>
+
+      <form id="listingForm" novalidate>
+
+        <div class="form-section-title">نوع الإعلان</div>
+        <div class="category-picker" id="categoryPicker">
+          <div class="category-option" data-category="land"><span class="cat-emoji">▦</span>قطعة أرض</div>
+          <div class="category-option" data-category="residential"><span class="cat-emoji">⌂</span>عقار سكني</div>
+          <div class="category-option" data-category="commercial"><span class="cat-emoji">🏢</span>عقار تجاري</div>
+          <div class="category-option" data-category="car"><span class="cat-emoji">🚗</span>سيارة</div>
+          <div class="category-option" data-category="motorcycle"><span class="cat-emoji">🏍</span>دراجة نارية</div>
+        </div>
+        <div class="form-field" id="categoryField" style="margin-top:-14px; margin-bottom:26px;">
+          <span class="error-msg">الرجاء اختيار نوع الإعلان</span>
+        </div>
+
+        <div class="form-section-title">بيانات الإعلان</div>
+        <div class="form-grid-2">
+          <div class="form-field" id="titleField" style="grid-column:1 / -1;">
+            <label for="title">عنوان الإعلان</label>
+            <input type="text" id="title" placeholder="مثال: فيلا فاخرة بحي الرياض">
+            <span class="error-msg">الرجاء إدخال عنوان للإعلان</span>
+          </div>
+          <div class="form-field" id="offerTypeField">
+            <label for="offerType">نوع العرض</label>
+            <select id="offerType">
+              <option value="">اختر...</option>
+              <option value="sale">للبيع</option>
+              <option value="rent">للإيجار</option>
+            </select>
+            <span class="error-msg">الرجاء اختيار نوع العرض</span>
+          </div>
+          <div class="form-field" id="priceField">
+            <label for="price">السعر (بالجنيه السوداني)</label>
+            <input type="number" id="price" placeholder="مثال: 2500000" min="0">
+            <span class="error-msg">الرجاء إدخال سعر صحيح</span>
+          </div>
+          <div class="form-field" id="cityField" style="grid-column:1 / -1;">
+            <label for="city">المدينة</label>
+            <select id="city">
+              <option value="">اختر المدينة...</option>
+              <option>الخرطوم</option>
+              <option>أم درمان</option>
+              <option>بحري</option>
+              <option>مدني</option>
+              <option>بورتسودان</option>
+              <option>كسلا</option>
+            </select>
+            <span class="error-msg">الرجاء اختيار المدينة</span>
+          </div>
+        </div>
+
+        <!-- Land -->
+        <div class="field-group" id="group-land">
+          <div class="form-section-title">تفاصيل الأرض</div>
+          <div class="form-grid-2">
+            <div class="form-field" id="landAreaField">
+              <label for="landArea">المساحة (م²)</label>
+              <input type="number" id="landArea" min="0" placeholder="مثال: 500">
+              <span class="error-msg">الرجاء إدخال المساحة</span>
+            </div>
+            <div class="form-field" id="landTypeField">
+              <label for="landType">نوع الأرض</label>
+              <select id="landType">
+                <option value="">اختر...</option>
+                <option>سكنية</option>
+                <option>تجارية</option>
+                <option>زراعية</option>
+              </select>
+              <span class="error-msg">الرجاء اختيار نوع الأرض</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Residential -->
+        <div class="field-group" id="group-residential">
+          <div class="form-section-title">تفاصيل العقار السكني</div>
+          <div class="form-grid-2">
+            <div class="form-field" id="resAreaField">
+              <label for="resArea">المساحة (م²)</label>
+              <input type="number" id="resArea" min="0" placeholder="مثال: 300">
+              <span class="error-msg">الرجاء إدخال المساحة</span>
+            </div>
+            <div class="form-field" id="resRoomsField">
+              <label for="resRooms">عدد الغرف</label>
+              <input type="number" id="resRooms" min="0" placeholder="مثال: 4">
+              <span class="error-msg">الرجاء إدخال عدد الغرف</span>
+            </div>
+            <div class="form-field" id="resBathsField">
+              <label for="resBaths">عدد الحمامات</label>
+              <input type="number" id="resBaths" min="0" placeholder="مثال: 2">
+              <span class="error-msg">الرجاء إدخال عدد الحمامات</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Commercial -->
+        <div class="field-group" id="group-commercial">
+          <div class="form-section-title">تفاصيل العقار التجاري</div>
+          <div class="form-grid-2">
+            <div class="form-field" id="comAreaField">
+              <label for="comArea">المساحة (م²)</label>
+              <input type="number" id="comArea" min="0" placeholder="مثال: 150">
+              <span class="error-msg">الرجاء إدخال المساحة</span>
+            </div>
+            <div class="form-field" id="comTypeField">
+              <label for="comType">نوع الاستخدام</label>
+              <select id="comType">
+                <option value="">اختر...</option>
+                <option>محل تجاري</option>
+                <option>مكتب</option>
+                <option>مستودع</option>
+                <option>مجمع تجاري</option>
+              </select>
+              <span class="error-msg">الرجاء اختيار نوع الاستخدام</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Car -->
+        <div class="field-group" id="group-car">
+          <div class="form-section-title">تفاصيل السيارة</div>
+          <div class="form-grid-2">
+            <div class="form-field" id="carBrandField">
+              <label for="carBrand">شركة التصنيع</label>
+              <select id="carBrand"><option value="">اختر الشركة...</option></select>
+              <span class="error-msg">الرجاء اختيار شركة التصنيع</span>
+            </div>
+            <div class="form-field" id="carModelField">
+              <label for="carModel">الموديل</label>
+              <select id="carModel"><option value="">اختر الشركة أولاً</option></select>
+              <span class="error-msg">الرجاء اختيار الموديل</span>
+            </div>
+            <div class="form-field" id="carYearField" style="grid-column:1 / -1;">
+              <label for="carYear">سنة الصنع</label>
+              <select id="carYear"><option value="">اختر السنة...</option></select>
+              <span class="error-msg">الرجاء اختيار سنة الصنع</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motorcycle -->
+        <div class="field-group" id="group-motorcycle">
+          <div class="form-section-title">تفاصيل الدراجة النارية</div>
+          <div class="form-grid-2">
+            <div class="form-field" id="motoBrandField">
+              <label for="motoBrand">شركة التصنيع</label>
+              <select id="motoBrand"><option value="">اختر الشركة...</option></select>
+              <span class="error-msg">الرجاء اختيار شركة التصنيع</span>
+            </div>
+            <div class="form-field" id="motoModelField">
+              <label for="motoModel">الموديل</label>
+              <select id="motoModel"><option value="">اختر الشركة أولاً</option></select>
+              <span class="error-msg">الرجاء اختيار الموديل</span>
+            </div>
+            <div class="form-field" id="motoYearField" style="grid-column:1 / -1;">
+              <label for="motoYear">سنة الصنع</label>
+              <select id="motoYear"><option value="">اختر السنة...</option></select>
+              <span class="error-msg">الرجاء اختيار سنة الصنع</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section-title">وصف الإعلان</div>
+        <div class="form-field" id="descField">
+          <label for="description">وصف إضافي (اختياري)</label>
+          <textarea id="description" placeholder="أضف أي تفاصيل إضافية تساعد المهتمين، مثل الحالة، الإضافات، أو سبب البيع..."></textarea>
+          <span class="hint">للسيارات والدراجات: اذكر حالة الفحص، المسافة المقطوعة، أو أي تعديلات.</span>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn" style="margin-top:10px;">نشر الإعلان</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
