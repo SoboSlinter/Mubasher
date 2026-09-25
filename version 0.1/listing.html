@@ -13,8 +13,12 @@
 
 <header class="listing-header">
   <div class="wrap">
-    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
+    <div class="brand"><span class="brand-mark" id="brandAvatar">م</span> <span data-i18n="brand.name">مباشر</span></div>
     <div style="display:flex; align-items:center; gap:12px;">
+      <div class="header-user-badge" id="headerUserBadge">
+        <span class="header-user-avatar" id="headerUserAvatar">م</span>
+        <span class="header-user-name" id="headerUserName"></span>
+      </div>
       <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
       <a class="btn btn-ghost" href="index.html" data-i18n="auth.backHomeShort">العودة إلى الرئيسية</a>
     </div>
@@ -43,7 +47,9 @@
       </div>
 
       <div class="detail-info">
+        <div class="hidden-by-admin-notice" id="hiddenByAdminNotice" data-i18n="listingPage.hiddenByAdminNotice" style="display:none;">تم إخفاء هذا الإعلان من قبل إدارة المنصة، ولا يظهر للمستخدمين الآخرين.</div>
         <span class="badge sale detail-category" id="detailCategory"></span>
+        <span class="badge badge-sold detail-sold-badge" id="detailSoldBadge" style="display:none;"></span>
         <div class="detail-price" id="detailPrice"></div>
         <h1 class="detail-title" id="detailTitle"></h1>
         <div class="detail-loc" id="detailLoc"></div>
@@ -76,11 +82,77 @@
             </form>
           </div>
         </div>
+
+        <div class="report-panel" id="reportPanel">
+          <a href="#" id="reportListingLink" class="report-link" data-i18n="listingPage.reportLink">الإبلاغ عن هذا الإعلان</a>
+          <div id="reportFormWrap" style="display:none;">
+            <div class="form-field" id="reportReasonField">
+              <label for="reportReason" data-i18n="listingPage.reportReasonLabel">سبب الإبلاغ</label>
+              <select id="reportReason">
+                <option value="misleading" data-i18n="listingPage.reportReason.misleading">معلومات مضللة</option>
+                <option value="duplicate" data-i18n="listingPage.reportReason.duplicate">إعلان مكرر</option>
+                <option value="soldElsewhere" data-i18n="listingPage.reportReason.soldElsewhere">تم البيع في مكان آخر</option>
+                <option value="inappropriate" data-i18n="listingPage.reportReason.inappropriate">محتوى غير لائق</option>
+                <option value="other" data-i18n="listingPage.reportReason.other">أخرى</option>
+              </select>
+            </div>
+            <div class="form-field" id="reportDetailsField">
+              <label for="reportDetails" data-i18n="listingPage.reportDetailsLabel">تفاصيل إضافية (اختياري)</label>
+              <textarea id="reportDetails"></textarea>
+            </div>
+            <button type="button" class="btn btn-ghost" id="submitReportBtn" data-i18n="listingPage.reportSubmitBtn">إرسال البلاغ</button>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 </main>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="modal profile-modal">
+    <button type="button" class="modal-close" id="closeProfile">×</button>
+    <h3 data-i18n="profile.title">الملف الشخصي</h3>
+
+    <div class="profile-photo-row">
+      <div class="profile-photo-preview" id="profilePhotoPreview">م</div>
+      <div>
+        <label class="btn btn-ghost profile-photo-btn" for="profilePhotoInput" data-i18n="profile.changePhotoBtn">تغيير الصورة</label>
+        <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+      </div>
+    </div>
+    <div class="profile-account-info">
+      <div class="profile-info-name" id="profileName"></div>
+      <div class="profile-info-email" id="profileEmail"></div>
+    </div>
+
+    <div class="form-status" id="profileStatus"></div>
+
+    <div class="form-field" id="profileAddressField">
+      <label for="profileAddress" data-i18n="profile.addressLabel">العنوان</label>
+      <input type="text" id="profileAddress" data-i18n-placeholder="profile.addressPlaceholder" placeholder="أدخل عنوانك">
+    </div>
+    <button type="button" class="btn btn-solid" id="saveAddressBtn" data-i18n="profile.saveAddressBtn" style="width:100%; margin-bottom:22px;">حفظ العنوان</button>
+
+    <div class="form-section-title" data-i18n="profile.changePasswordTitle" style="margin-top:0;">تغيير كلمة المرور</div>
+    <div class="form-field" id="currentPasswordField">
+      <label for="currentPassword" data-i18n="profile.currentPasswordLabel">كلمة المرور الحالية</label>
+      <input type="password" id="currentPassword">
+      <span class="error-msg" data-i18n="profile.currentPasswordError">كلمة المرور الحالية غير صحيحة</span>
+    </div>
+    <div class="form-field" id="newPasswordProfileField">
+      <label for="newPasswordProfile" data-i18n="profile.newPasswordLabel">كلمة المرور الجديدة</label>
+      <input type="password" id="newPasswordProfile">
+      <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+    </div>
+    <div class="form-field" id="confirmNewPasswordProfileField">
+      <label for="confirmNewPasswordProfile" data-i18n="profile.confirmNewPasswordLabel">تأكيد كلمة المرور الجديدة</label>
+      <input type="password" id="confirmNewPasswordProfile">
+      <span class="error-msg" data-i18n="error.confirmPassword">كلمتا المرور غير متطابقتين</span>
+    </div>
+    <button type="button" class="btn btn-solid" id="savePasswordBtn" data-i18n="profile.savePasswordBtn" style="width:100%;">تحديث كلمة المرور</button>
+  </div>
+</div>
 
 <script src="script.js"></script>
 

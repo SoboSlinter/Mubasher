@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n-title="meta.admin.title">لوحة تحكم الإدارة | مباشر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="listing-page admin-page">
+
+<header class="listing-header">
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark" id="brandAvatar">م</span> <span data-i18n="brand.name">مباشر</span> <span class="admin-badge" data-i18n="admin.badge">الإدارة</span></div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div class="header-user-badge" id="headerUserBadge">
+        <span class="header-user-avatar" id="headerUserAvatar">م</span>
+        <span class="header-user-name" id="headerUserName"></span>
+      </div>
+      <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
+      <a class="btn btn-ghost" href="index.html" data-i18n="auth.backHomeShort">العودة إلى الرئيسية</a>
+    </div>
+  </div>
+</header>
+
+<main class="listing-main" id="adminRoot">
+  <div class="wrap">
+
+    <!-- يظهر لمن لم يسجل الدخول: اختيار بين تسجيل الدخول أو تسجيل مدير جديد -->
+    <div class="listing-form-card auth-required-notice" id="adminLoginNotice" style="display:none;">
+      <p data-i18n="admin.loginRequired">يجب تسجيل الدخول للوصول إلى لوحة تحكم الإدارة.</p>
+      <div class="auth-required-actions">
+        <a class="btn btn-solid" href="login.html" data-i18n="auth.login">تسجيل الدخول</a>
+        <button type="button" class="btn btn-ghost" id="showAdminRegisterBtn" data-i18n="admin.registerNewAdminBtn">تسجيل مدير جديد</button>
+      </div>
+    </div>
+
+    <!-- تسجيل مدير جديد: يتطلب بيانات المدير العام للتفويض، ثم بيانات المدير الجديد وصلاحياته -->
+    <div class="listing-form-card auth-required-notice" id="adminRegisterGate" style="display:none;">
+      <h2 data-i18n="admin.registerNewAdmin.heading">تسجيل مدير جديد</h2>
+      <p class="admin-note" data-i18n="admin.registerNewAdmin.note">هذه العملية متاحة فقط للمدير العام (Super Admin). أدخل بيانات المدير العام أدناه لتفويض العملية، ثم بيانات المدير الجديد ونوع صلاحياته.</p>
+
+      <div class="form-status" id="adminRegisterStatus"></div>
+
+      <div class="form-section-title" data-i18n="admin.registerNewAdmin.authorizerTitle">بيانات المدير العام (للتفويض)</div>
+      <div class="form-field" id="authorizerEmailField">
+        <label for="authorizerEmail" data-i18n="field.email">البريد الإلكتروني</label>
+        <input type="email" id="authorizerEmail" autocomplete="off">
+        <span class="error-msg" data-i18n="admin.registerNewAdmin.authorizerError">بيانات المدير العام غير صحيحة، أو الحساب لا يملك صلاحية المدير العام</span>
+      </div>
+      <div class="form-field" id="authorizerPasswordField">
+        <label for="authorizerPassword" data-i18n="field.password">كلمة المرور</label>
+        <input type="password" id="authorizerPassword" autocomplete="off">
+      </div>
+
+      <div class="form-section-title" data-i18n="admin.registerNewAdmin.newAdminTitle">بيانات المدير الجديد</div>
+      <div class="form-field" id="newAdminNameField">
+        <label for="newAdminName" data-i18n="field.fullName">الاسم الكامل</label>
+        <input type="text" id="newAdminName">
+        <span class="error-msg" data-i18n="error.fullName">الرجاء إدخال الاسم الكامل</span>
+      </div>
+      <div class="form-field" id="newAdminEmailField">
+        <label for="newAdminEmail" data-i18n="field.email">البريد الإلكتروني</label>
+        <input type="email" id="newAdminEmail">
+        <span class="error-msg" id="newAdminEmailFormatMsg" data-i18n="error.email">الرجاء إدخال بريد إلكتروني صحيح</span>
+        <span class="error-msg" id="newAdminEmailExistsMsg" data-i18n="auth.emailExists">هذا البريد الإلكتروني مسجّل بالفعل</span>
+      </div>
+      <div class="form-field" id="newAdminPhoneField">
+        <label for="newAdminPhone" data-i18n="field.phone">رقم الجوال</label>
+        <input type="tel" id="newAdminPhone" placeholder="09xxxxxxxx">
+        <span class="error-msg" data-i18n="error.phone">الرجاء إدخال رقم جوال صحيح (10 أرقام)</span>
+      </div>
+      <div class="form-field" id="newAdminPasswordField">
+        <label for="newAdminPassword" data-i18n="field.password">كلمة المرور</label>
+        <input type="password" id="newAdminPassword">
+        <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+      </div>
+      <div class="form-field" id="newAdminConfirmPasswordField">
+        <label for="newAdminConfirmPassword" data-i18n="field.confirmPassword">تأكيد كلمة المرور</label>
+        <input type="password" id="newAdminConfirmPassword">
+        <span class="error-msg" data-i18n="error.confirmPassword">كلمتا المرور غير متطابقتين</span>
+      </div>
+      <div class="form-field" id="newAdminRoleField">
+        <label for="newAdminRole" data-i18n="admin.registerNewAdmin.roleLabel">نوع الصلاحية</label>
+        <select id="newAdminRole"></select>
+      </div>
+
+      <div class="auth-required-actions">
+        <button type="button" class="btn btn-solid" id="submitAdminRegisterBtn" data-i18n="admin.registerNewAdmin.submitBtn">تسجيل المدير الجديد</button>
+        <button type="button" class="btn btn-ghost" id="backToAdminLoginBtn" data-i18n="admin.registerNewAdmin.backBtn">العودة لتسجيل الدخول</button>
+      </div>
+    </div>
+
+    <!-- يظهر لمن سجّل دخوله لكن لا يملك صلاحية إدارية -->
+    <div class="listing-form-card auth-required-notice" id="adminAccessDenied" style="display:none;">
+      <p data-i18n="admin.accessDenied">حسابك لا يملك صلاحية الوصول إلى لوحة تحكم الإدارة.</p>
+      <a class="btn btn-ghost" href="index.html" data-i18n="auth.backHomeShort">العودة إلى الرئيسية</a>
+    </div>
+
+    <!-- يظهر عند عدم وجود أي مدير عام بعد (تهيئة أولية) -->
+    <div class="listing-form-card auth-required-notice" id="adminBootstrap" style="display:none;">
+      <p data-i18n="admin.bootstrapNote">لا يوجد بعد أي حساب "مدير عام" على المنصة. بصفتك أول مستخدم يفتح هذه الصفحة، يمكنك تفعيل صلاحية المدير العام لحسابك الحالي.</p>
+      <button type="button" class="btn btn-solid" id="claimSuperAdminBtn" data-i18n="admin.claimSuperAdminBtn">تفعيل صلاحية المدير العام لحسابي</button>
+    </div>
+
+    <!-- مصادقة ثنائية إضافية لحسابات الإدارة (إن كانت مفعّلة) -->
+    <div class="listing-form-card auth-required-notice" id="adminTwoFactorGate" style="display:none;">
+      <p data-i18n="admin.twoFactorPrompt">هذا الحساب مفعّل عليه التحقق بخطوتين. أدخل الرمز المؤقت المعروض أدناه لإثبات الهوية (بيئة تجريبية: يظهر الرمز هنا بدلاً من إرساله فعليًا).</p>
+      <div class="otp-display" id="adminOtpDisplay"></div>
+      <div class="form-field" id="adminOtpField">
+        <input type="text" id="adminOtpInput" data-i18n-placeholder="forgot.otpLabel" placeholder="أدخل كلمة المرور المؤقتة">
+        <span class="error-msg" data-i18n="forgot.otpError">كلمة المرور المؤقتة غير صحيحة</span>
+      </div>
+      <button type="button" class="btn btn-solid" id="adminOtpVerifyBtn" data-i18n="forgot.verifyBtn">تحقق</button>
+    </div>
+
+    <!-- واجهة لوحة التحكم -->
+    <div class="admin-shell" id="adminShell" style="display:none;">
+      <aside class="admin-sidebar">
+        <div class="admin-role-chip" id="adminRoleChip"></div>
+        <nav class="admin-nav" id="adminNav"></nav>
+      </aside>
+
+      <div class="admin-content">
+
+        <section class="admin-section" id="section-dashboard">
+          <h2 data-i18n="admin.dashboard.heading">لوحة التحكم</h2>
+          <div class="admin-stats-grid" id="dashboardStats"></div>
+          <div class="admin-panel">
+            <h3 data-i18n="admin.dashboard.topCities">أكثر المناطق نشاطًا</h3>
+            <div id="dashboardTopCities"></div>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-users">
+          <div class="admin-panel" id="pendingReviewPanel" style="border-top:none; margin-top:0; padding-top:0;">
+            <h3 data-i18n="admin.pendingReview.heading">طلبات التسجيل بانتظار المراجعة</h3>
+            <p class="admin-note" data-i18n="admin.pendingReview.note">راجع الرقم الوطني وصورة الهوية قبل الموافقة على الحساب. عند الموافقة تبدأ فترة تجربة مجانية مدتها 7 أيام تلقائيًا.</p>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="admin.pendingReview.col.name">الاسم</th>
+                    <th data-i18n="admin.pendingReview.col.email">البريد</th>
+                    <th data-i18n="admin.pendingReview.col.nationalId">الرقم الوطني</th>
+                    <th data-i18n="admin.pendingReview.col.idPhoto">صورة الهوية</th>
+                    <th data-i18n="admin.pendingReview.col.plan">الخطة المطلوبة</th>
+                    <th data-i18n="admin.pendingReview.col.actions">إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="pendingReviewTableBody"></tbody>
+              </table>
+            </div>
+            <p class="admin-note" id="pendingReviewEmptyNote" data-i18n="admin.pendingReview.empty" style="display:none;">لا توجد طلبات تسجيل بانتظار المراجعة حاليًا.</p>
+          </div>
+
+          <div class="admin-section-head" style="margin-top:24px;">
+            <h2 data-i18n="admin.users.heading">إدارة المستخدمين</h2>
+            <input type="text" id="usersSearchInput" class="admin-search" data-i18n-placeholder="admin.users.searchPlaceholder" placeholder="بحث بالاسم أو البريد...">
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.users.col.name">الاسم</th>
+                  <th data-i18n="admin.users.col.email">البريد</th>
+                  <th data-i18n="admin.users.col.phone">الجوال</th>
+                  <th data-i18n="admin.users.col.role">الدور</th>
+                  <th data-i18n="admin.users.col.status">الحالة</th>
+                  <th data-i18n="admin.users.col.accountStage">مرحلة الاشتراك</th>
+                  <th data-i18n="admin.users.col.plan">الخطة</th>
+                  <th data-i18n="admin.users.col.joined">آخر دخول</th>
+                  <th data-i18n="admin.users.col.actions">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-cars">
+          <h2 data-i18n="admin.cars.heading">إدارة السيارات والدراجات النارية</h2>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.listings.col.title">الإعلان</th>
+                  <th data-i18n="admin.listings.col.owner">المالك</th>
+                  <th data-i18n="admin.listings.col.price">السعر</th>
+                  <th data-i18n="admin.listings.col.city">المدينة</th>
+                  <th data-i18n="admin.listings.col.status">الحالة</th>
+                  <th data-i18n="admin.listings.col.visibility">الظهور</th>
+                  <th data-i18n="admin.listings.col.actions">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="carsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-properties">
+          <h2 data-i18n="admin.properties.heading">إدارة العقارات والأراضي</h2>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.listings.col.title">الإعلان</th>
+                  <th data-i18n="admin.listings.col.owner">المالك</th>
+                  <th data-i18n="admin.listings.col.price">السعر</th>
+                  <th data-i18n="admin.listings.col.city">المدينة</th>
+                  <th data-i18n="admin.listings.col.status">الحالة</th>
+                  <th data-i18n="admin.listings.col.visibility">الظهور</th>
+                  <th data-i18n="admin.listings.col.actions">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="propertiesTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-listings">
+          <div class="admin-section-head">
+            <h2 data-i18n="admin.listings.heading">جميع الإعلانات</h2>
+            <input type="text" id="listingsSearchInput" class="admin-search" data-i18n-placeholder="admin.listings.searchPlaceholder" placeholder="بحث في الإعلانات...">
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.listings.col.category">النوع</th>
+                  <th data-i18n="admin.listings.col.title">الإعلان</th>
+                  <th data-i18n="admin.listings.col.owner">المالك</th>
+                  <th data-i18n="admin.listings.col.price">السعر</th>
+                  <th data-i18n="admin.listings.col.city">المدينة</th>
+                  <th data-i18n="admin.listings.col.status">الحالة</th>
+                  <th data-i18n="admin.listings.col.visibility">الظهور</th>
+                  <th data-i18n="admin.listings.col.actions">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="listingsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-payments">
+          <h2 data-i18n="admin.payments.heading">المدفوعات</h2>
+          <p class="admin-note" data-i18n="admin.payments.simulatedNote">بيانات مشتقة من خطط الاشتراك الحالية للمستخدمين. لا توجد بوابة دفع فعلية مربوطة بهذا الموقع التجريبي.</p>
+          <div class="admin-stats-grid" id="paymentsStats"></div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.payments.col.user">المستخدم</th>
+                  <th data-i18n="admin.payments.col.plan">الخطة</th>
+                  <th data-i18n="admin.payments.col.amount">القيمة التقديرية</th>
+                </tr>
+              </thead>
+              <tbody id="paymentsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-subscriptions">
+          <h2 data-i18n="admin.subscriptions.heading">الاشتراكات</h2>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.subscriptions.col.user">المستخدم</th>
+                  <th data-i18n="admin.subscriptions.col.plan">الخطة الحالية</th>
+                  <th data-i18n="admin.subscriptions.col.actions">تغيير الخطة</th>
+                </tr>
+              </thead>
+              <tbody id="subscriptionsTableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="admin-panel">
+            <h3 data-i18n="admin.coupons.heading">العروض والكوبونات</h3>
+            <form id="addCouponForm" class="admin-inline-form">
+              <input type="text" id="couponCode" data-i18n-placeholder="admin.coupons.codePlaceholder" placeholder="كود الكوبون">
+              <input type="number" id="couponDiscount" min="1" max="100" data-i18n-placeholder="admin.coupons.discountPlaceholder" placeholder="نسبة الخصم %">
+              <button type="submit" class="btn btn-solid" data-i18n="admin.coupons.addBtn">إضافة</button>
+            </form>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="admin.coupons.col.code">الكود</th>
+                    <th data-i18n="admin.coupons.col.discount">الخصم</th>
+                    <th data-i18n="admin.coupons.col.status">الحالة</th>
+                    <th data-i18n="admin.coupons.col.actions">إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="couponsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-reports">
+          <h2 data-i18n="admin.reports.heading">البلاغات والشكاوى</h2>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.reports.col.listing">الإعلان</th>
+                  <th data-i18n="admin.reports.col.reporter">المُبلّغ</th>
+                  <th data-i18n="admin.reports.col.reason">السبب</th>
+                  <th data-i18n="admin.reports.col.status">الحالة</th>
+                  <th data-i18n="admin.reports.col.date">التاريخ</th>
+                  <th data-i18n="admin.reports.col.actions">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="reportsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-content">
+          <h2 data-i18n="admin.content.heading">إدارة محتوى الصفحة الرئيسية</h2>
+          <p class="admin-note" data-i18n="admin.content.note">التعديلات هنا تستبدل النصوص الافتراضية لكل لغة على حدة. اترك الحقل فارغًا للرجوع للنص الافتراضي.</p>
+          <div id="contentEditorFields"></div>
+          <button type="button" class="btn btn-solid" id="saveContentBtn" data-i18n="admin.content.saveBtn">حفظ التعديلات</button>
+        </section>
+
+        <section class="admin-section" id="section-settings">
+          <h2 data-i18n="admin.settings.heading">إعدادات المنصة</h2>
+          <div class="form-field">
+            <label for="settingMinAge" data-i18n="admin.settings.minAgeLabel">الحد الأدنى لعمر التسجيل</label>
+            <input type="number" id="settingMinAge" min="13" max="99">
+          </div>
+          <label class="terms-row">
+            <input type="checkbox" id="settingMaintenanceMode">
+            <span data-i18n="admin.settings.maintenanceModeLabel">تفعيل وضع الصيانة (يظهر تنبيه للزوار في الصفحة الرئيسية)</span>
+          </label>
+          <div class="form-field">
+            <label for="settingMaintenanceMessage" data-i18n="admin.settings.maintenanceMessageLabel">رسالة الصيانة</label>
+            <input type="text" id="settingMaintenanceMessage">
+          </div>
+          <button type="button" class="btn btn-solid" id="saveSettingsBtn" data-i18n="admin.settings.saveBtn">حفظ الإعدادات</button>
+
+          <div class="admin-panel">
+            <h3 data-i18n="admin.settings.backupHeading">النسخ الاحتياطي للبيانات</h3>
+            <p class="admin-note" data-i18n="admin.settings.backupNote">تصدير جميع بيانات المنصة (المستخدمون، الإعلانات، الرسائل...) كملف نسخة احتياطية، أو استيراد نسخة سابقة.</p>
+            <div class="admin-inline-form">
+              <button type="button" class="btn btn-ghost" id="exportBackupBtn" data-i18n="admin.settings.exportBtn">تنزيل نسخة احتياطية</button>
+              <label class="btn btn-ghost" for="importBackupInput" data-i18n="admin.settings.importBtn">استيراد نسخة احتياطية</label>
+              <input type="file" id="importBackupInput" accept="application/json" style="display:none;">
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-adminUsers">
+          <h2 data-i18n="admin.adminUsers.heading">مستخدمو الإدارة</h2>
+          <div class="admin-inline-form">
+            <input type="email" id="grantAdminEmail" data-i18n-placeholder="admin.adminUsers.emailPlaceholder" placeholder="بريد المستخدم">
+            <select id="grantAdminRole"></select>
+            <button type="button" class="btn btn-solid" id="grantAdminBtn" data-i18n="admin.adminUsers.grantBtn">منح صلاحية</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.adminUsers.col.name">الاسم</th>
+                  <th data-i18n="admin.adminUsers.col.email">البريد</th>
+                  <th data-i18n="admin.adminUsers.col.role">الدور</th>
+                  <th data-i18n="admin.adminUsers.col.twoFactor">مصادقة ثنائية</th>
+                  <th data-i18n="admin.adminUsers.col.actions">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="adminUsersTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section" id="section-auditLogs">
+          <h2 data-i18n="admin.auditLogs.heading">سجل العمليات (Audit Log)</h2>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th data-i18n="admin.auditLogs.col.date">التاريخ</th>
+                  <th data-i18n="admin.auditLogs.col.actor">المستخدم</th>
+                  <th data-i18n="admin.auditLogs.col.action">الإجراء</th>
+                  <th data-i18n="admin.auditLogs.col.target">الهدف</th>
+                  <th data-i18n="admin.auditLogs.col.details">تفاصيل</th>
+                </tr>
+              </thead>
+              <tbody id="auditLogTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="modal profile-modal">
+    <button type="button" class="modal-close" id="closeProfile">×</button>
+    <h3 data-i18n="profile.title">الملف الشخصي</h3>
+
+    <div class="profile-photo-row">
+      <div class="profile-photo-preview" id="profilePhotoPreview">م</div>
+      <div>
+        <label class="btn btn-ghost profile-photo-btn" for="profilePhotoInput" data-i18n="profile.changePhotoBtn">تغيير الصورة</label>
+        <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+      </div>
+    </div>
+    <div class="profile-account-info">
+      <div class="profile-info-name" id="profileName"></div>
+      <div class="profile-info-email" id="profileEmail"></div>
+    </div>
+
+    <div class="form-status" id="profileStatus"></div>
+
+    <div class="form-field" id="profileAddressField">
+      <label for="profileAddress" data-i18n="profile.addressLabel">العنوان</label>
+      <input type="text" id="profileAddress" data-i18n-placeholder="profile.addressPlaceholder" placeholder="أدخل عنوانك">
+    </div>
+    <button type="button" class="btn btn-solid" id="saveAddressBtn" data-i18n="profile.saveAddressBtn" style="width:100%; margin-bottom:22px;">حفظ العنوان</button>
+
+    <div class="form-section-title" data-i18n="profile.changePasswordTitle" style="margin-top:0;">تغيير كلمة المرور</div>
+    <div class="form-field" id="currentPasswordField">
+      <label for="currentPassword" data-i18n="profile.currentPasswordLabel">كلمة المرور الحالية</label>
+      <input type="password" id="currentPassword">
+      <span class="error-msg" data-i18n="profile.currentPasswordError">كلمة المرور الحالية غير صحيحة</span>
+    </div>
+    <div class="form-field" id="newPasswordProfileField">
+      <label for="newPasswordProfile" data-i18n="profile.newPasswordLabel">كلمة المرور الجديدة</label>
+      <input type="password" id="newPasswordProfile">
+      <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+    </div>
+    <div class="form-field" id="confirmNewPasswordProfileField">
+      <label for="confirmNewPasswordProfile" data-i18n="profile.confirmNewPasswordLabel">تأكيد كلمة المرور الجديدة</label>
+      <input type="password" id="confirmNewPasswordProfile">
+      <span class="error-msg" data-i18n="error.confirmPassword">كلمتا المرور غير متطابقتين</span>
+    </div>
+    <button type="button" class="btn btn-solid" id="savePasswordBtn" data-i18n="profile.savePasswordBtn" style="width:100%;">تحديث كلمة المرور</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -13,21 +13,29 @@
 
 <header>
   <div class="wrap nav-row">
-    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
+    <div class="brand"><span class="brand-mark" id="brandAvatar">م</span> <span data-i18n="brand.name">مباشر</span></div>
     <nav class="links">
       <a href="#realestate" data-i18n="nav.realestate">عقارات</a>
       <a href="#cars" data-i18n="nav.cars">سيارات</a>
       <a href="add-listing.html" data-i18n="nav.addListing">أضف إعلانك</a>
+      <a href="my-listings.html" id="navMyListingsLink" data-i18n="nav.myListings" style="display:none;">إعلاناتي</a>
       <a href="messages.html" id="navMessagesLink" data-i18n="nav.messages" style="display:none;">رسائلي</a>
+      <a href="subscription.html" id="navSubscriptionLink" data-i18n="nav.subscription" style="display:none;">اشتراكي</a>
       <a href="#about" data-i18n="nav.about">من نحن</a>
     </nav>
     <div class="auth-actions" id="authActions">
+      <div class="header-user-badge" id="headerUserBadge">
+        <span class="header-user-avatar" id="headerUserAvatar">م</span>
+        <span class="header-user-name" id="headerUserName"></span>
+      </div>
       <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
       <a class="btn btn-ghost" href="login.html" id="navLoginBtn" data-i18n="auth.login">تسجيل الدخول</a>
       <a class="btn btn-solid" href="signup.html" id="navSignupBtn" data-i18n="auth.signup">إنشاء حساب</a>
     </div>
   </div>
 </header>
+
+<div class="maintenance-banner" id="maintenanceBanner" style="display:none;"></div>
 
 <section class="hero">
   <div class="wrap hero-inner">
@@ -49,6 +57,22 @@
           <option data-i18n="city.omdurman">أم درمان</option>
           <option data-i18n="city.bahri">بحري</option>
           <option data-i18n="city.madani">مدني</option>
+          <option data-i18n="city.portsudan">بورتسودان</option>
+          <option data-i18n="city.kassala">كسلا</option>
+          <option data-i18n="city.elobeid">الأبيض</option>
+          <option data-i18n="city.nyala">نيالا</option>
+          <option data-i18n="city.elfasher">الفاشر</option>
+          <option data-i18n="city.elgeneina">الجنينة</option>
+          <option data-i18n="city.kosti">كوستي</option>
+          <option data-i18n="city.sennar">سنار</option>
+          <option data-i18n="city.eddamazin">الدمازين</option>
+          <option data-i18n="city.atbara">عطبرة</option>
+          <option data-i18n="city.dongola">دنقلا</option>
+          <option data-i18n="city.gadarif">القضارف</option>
+          <option data-i18n="city.shendi">شندي</option>
+          <option data-i18n="city.kadugli">كادقلي</option>
+          <option data-i18n="city.zalingei">زالنجي</option>
+          <option data-i18n="city.eddamer">الدامر</option>
         </select>
       </div>
       <div class="field">
@@ -158,6 +182,51 @@
   </div>
   <div class="wrap foot-bottom" data-i18n="footer.copyright">© 2026 مباشر. جميع الحقوق محفوظة.</div>
 </footer>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="modal profile-modal">
+    <button type="button" class="modal-close" id="closeProfile">×</button>
+    <h3 data-i18n="profile.title">الملف الشخصي</h3>
+
+    <div class="profile-photo-row">
+      <div class="profile-photo-preview" id="profilePhotoPreview">م</div>
+      <div>
+        <label class="btn btn-ghost profile-photo-btn" for="profilePhotoInput" data-i18n="profile.changePhotoBtn">تغيير الصورة</label>
+        <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+      </div>
+    </div>
+    <div class="profile-account-info">
+      <div class="profile-info-name" id="profileName"></div>
+      <div class="profile-info-email" id="profileEmail"></div>
+    </div>
+
+    <div class="form-status" id="profileStatus"></div>
+
+    <div class="form-field" id="profileAddressField">
+      <label for="profileAddress" data-i18n="profile.addressLabel">العنوان</label>
+      <input type="text" id="profileAddress" data-i18n-placeholder="profile.addressPlaceholder" placeholder="أدخل عنوانك">
+    </div>
+    <button type="button" class="btn btn-solid" id="saveAddressBtn" data-i18n="profile.saveAddressBtn" style="width:100%; margin-bottom:22px;">حفظ العنوان</button>
+
+    <div class="form-section-title" data-i18n="profile.changePasswordTitle" style="margin-top:0;">تغيير كلمة المرور</div>
+    <div class="form-field" id="currentPasswordField">
+      <label for="currentPassword" data-i18n="profile.currentPasswordLabel">كلمة المرور الحالية</label>
+      <input type="password" id="currentPassword">
+      <span class="error-msg" data-i18n="profile.currentPasswordError">كلمة المرور الحالية غير صحيحة</span>
+    </div>
+    <div class="form-field" id="newPasswordProfileField">
+      <label for="newPasswordProfile" data-i18n="profile.newPasswordLabel">كلمة المرور الجديدة</label>
+      <input type="password" id="newPasswordProfile">
+      <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+    </div>
+    <div class="form-field" id="confirmNewPasswordProfileField">
+      <label for="confirmNewPasswordProfile" data-i18n="profile.confirmNewPasswordLabel">تأكيد كلمة المرور الجديدة</label>
+      <input type="password" id="confirmNewPasswordProfile">
+      <span class="error-msg" data-i18n="error.confirmPassword">كلمتا المرور غير متطابقتين</span>
+    </div>
+    <button type="button" class="btn btn-solid" id="savePasswordBtn" data-i18n="profile.savePasswordBtn" style="width:100%;">تحديث كلمة المرور</button>
+  </div>
+</div>
 
 <script src="script.js"></script>
 

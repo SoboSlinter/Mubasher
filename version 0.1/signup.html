@@ -25,6 +25,10 @@
     <div class="auth-box">
       <div class="back-row">
         <a class="back-link" href="index.html" data-i18n="auth.backHome">← العودة إلى الرئيسية</a>
+        <div class="header-user-badge" id="headerUserBadge">
+          <span class="header-user-avatar" id="headerUserAvatar">م</span>
+          <span class="header-user-name" id="headerUserName"></span>
+        </div>
         <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
       </div>
       <h1 data-i18n="auth.signupTitle">إنشاء حساب جديد</h1>
@@ -49,6 +53,36 @@
           <label for="phone" data-i18n="field.phone">رقم الجوال</label>
           <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxx" autocomplete="tel">
           <span class="error-msg" data-i18n="error.phone">الرجاء إدخال رقم جوال صحيح (10 أرقام)</span>
+        </div>
+
+        <div class="form-field" id="birthdateField">
+          <label for="birthdate" data-i18n="field.birthdate">تاريخ الميلاد</label>
+          <input type="date" id="birthdate" name="birthdate">
+          <span class="error-msg" id="birthdateErrorMsg" data-i18n="error.birthdate">الرجاء إدخال تاريخ ميلاد صحيح</span>
+          <span class="hint" data-i18n="auth.ageRequirementHint">يجب أن يكون عمرك 18 عامًا أو أكثر لإنشاء حساب.</span>
+        </div>
+
+        <div class="form-field" id="profilePhotoField">
+          <label for="profilePhoto" data-i18n="field.profilePhotoRequired">الصورة الشخصية</label>
+          <input type="file" id="profilePhoto" accept="image/*">
+          <span class="error-msg" data-i18n="error.profilePhoto">الرجاء إرفاق صورة شخصية</span>
+          <span class="hint" data-i18n="field.profilePhotoHintRequired">يجب إضافة صورة شخصية، وستظهر بجانب اسم المنصة بعد تسجيل الدخول.</span>
+        </div>
+
+        <div class="form-section-title" data-i18n="field.identityVerificationTitle">التحقق من الهوية</div>
+        <p class="plan-intro" data-i18n="field.identityVerificationIntro">هذه البيانات مطلوبة لمراجعة طلبك من قبل الإدارة قبل تفعيل حسابك، ويتم استخدامها للأغراض القانونية فقط.</p>
+
+        <div class="form-field" id="nationalIdField">
+          <label for="nationalId" data-i18n="field.nationalId">الرقم الوطني</label>
+          <input type="text" id="nationalId" name="nationalId" inputmode="numeric" placeholder="000000000000000">
+          <span class="error-msg" data-i18n="error.nationalId">الرجاء إدخال الرقم الوطني</span>
+        </div>
+
+        <div class="form-field" id="idPhotoField">
+          <label for="idPhoto" data-i18n="field.idPhoto">صورة الهوية</label>
+          <input type="file" id="idPhoto" accept="image/*" capture="environment">
+          <span class="error-msg" data-i18n="error.idPhoto">الرجاء التقاط أو إرفاق صورة للهوية</span>
+          <span class="hint" data-i18n="field.idPhotoHint">التقط صورة واضحة لهويتك الوطنية أو ارفقها من جهازك. تُستخدم هذه الصورة فقط للتحقق من هويتك من قبل الإدارة.</span>
         </div>
 
         <div class="form-field" id="passwordField">

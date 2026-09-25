@@ -13,8 +13,12 @@
 
 <header class="listing-header">
   <div class="wrap">
-    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
+    <div class="brand"><span class="brand-mark" id="brandAvatar">م</span> <span data-i18n="brand.name">مباشر</span></div>
     <div style="display:flex; align-items:center; gap:12px;">
+      <div class="header-user-badge" id="headerUserBadge">
+        <span class="header-user-avatar" id="headerUserAvatar">م</span>
+        <span class="header-user-name" id="headerUserName"></span>
+      </div>
       <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
       <a class="btn btn-ghost" href="index.html" data-i18n="auth.backHomeShort">العودة إلى الرئيسية</a>
     </div>
@@ -55,9 +59,60 @@
 
       <h2 data-i18n="terms.s9.heading">تواصل معنا</h2>
       <p data-i18n="terms.s9.body">لأي استفسار بخصوص هذه الشروط، يمكنك التواصل مع فريق الدعم الفني عبر المنصة.</p>
+
+      <h2 data-i18n="terms.s10.heading">التحقق من الهوية ومراجعة الحسابات</h2>
+      <p data-i18n="terms.s10.body">عند إنشاء الحساب، يُطلب منك إدخال رقمك الوطني وإرفاق صورة لهويتك للتحقق من صحة بياناتك. يبقى الحساب معلّقًا حتى تتم مراجعته والموافقة عليه من قبل إدارة المنصة، ويحق للإدارة رفض أي طلب تسجيل لا تكتمل بياناته أو تبدو غير صحيحة.</p>
+
+      <h2 data-i18n="terms.s11.heading">الاشتراك والفترة التجريبية والدفع</h2>
+      <p data-i18n="terms.s11.body">بعد الموافقة على بياناتك، تُمنح فترة تجربة مجانية مدتها 7 أيام لاستخدام المنصة. لاستمرار الاشتراك بعد انتهاء الفترة التجريبية، يجب إكمال عملية الدفع عبر إحدى وسائل الدفع المتاحة على المنصة، وتصبح حالة الاشتراك "نشط" تلقائيًا بعد نجاح عملية الدفع.</p>
     </div>
   </div>
 </main>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="modal profile-modal">
+    <button type="button" class="modal-close" id="closeProfile">×</button>
+    <h3 data-i18n="profile.title">الملف الشخصي</h3>
+
+    <div class="profile-photo-row">
+      <div class="profile-photo-preview" id="profilePhotoPreview">م</div>
+      <div>
+        <label class="btn btn-ghost profile-photo-btn" for="profilePhotoInput" data-i18n="profile.changePhotoBtn">تغيير الصورة</label>
+        <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+      </div>
+    </div>
+    <div class="profile-account-info">
+      <div class="profile-info-name" id="profileName"></div>
+      <div class="profile-info-email" id="profileEmail"></div>
+    </div>
+
+    <div class="form-status" id="profileStatus"></div>
+
+    <div class="form-field" id="profileAddressField">
+      <label for="profileAddress" data-i18n="profile.addressLabel">العنوان</label>
+      <input type="text" id="profileAddress" data-i18n-placeholder="profile.addressPlaceholder" placeholder="أدخل عنوانك">
+    </div>
+    <button type="button" class="btn btn-solid" id="saveAddressBtn" data-i18n="profile.saveAddressBtn" style="width:100%; margin-bottom:22px;">حفظ العنوان</button>
+
+    <div class="form-section-title" data-i18n="profile.changePasswordTitle" style="margin-top:0;">تغيير كلمة المرور</div>
+    <div class="form-field" id="currentPasswordField">
+      <label for="currentPassword" data-i18n="profile.currentPasswordLabel">كلمة المرور الحالية</label>
+      <input type="password" id="currentPassword">
+      <span class="error-msg" data-i18n="profile.currentPasswordError">كلمة المرور الحالية غير صحيحة</span>
+    </div>
+    <div class="form-field" id="newPasswordProfileField">
+      <label for="newPasswordProfile" data-i18n="profile.newPasswordLabel">كلمة المرور الجديدة</label>
+      <input type="password" id="newPasswordProfile">
+      <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+    </div>
+    <div class="form-field" id="confirmNewPasswordProfileField">
+      <label for="confirmNewPasswordProfile" data-i18n="profile.confirmNewPasswordLabel">تأكيد كلمة المرور الجديدة</label>
+      <input type="password" id="confirmNewPasswordProfile">
+      <span class="error-msg" data-i18n="error.confirmPassword">كلمتا المرور غير متطابقتين</span>
+    </div>
+    <button type="button" class="btn btn-solid" id="savePasswordBtn" data-i18n="profile.savePasswordBtn" style="width:100%;">تحديث كلمة المرور</button>
+  </div>
+</div>
 
 <script src="script.js"></script>
 

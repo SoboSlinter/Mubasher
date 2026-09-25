@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n-title="meta.privacy.title">سياسة الخصوصية | مباشر</title>
+<title data-i18n-title="meta.subscription.title">اشتراكي | مباشر</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
@@ -25,43 +25,63 @@
   </div>
 </header>
 
-<main class="listing-main">
+<main class="listing-main" id="subscriptionRoot">
   <div class="wrap">
     <div class="listing-intro">
-      <h1 data-i18n="privacy.heading">سياسة الخصوصية</h1>
-      <p class="legal-updated" data-i18n="legal.updated">آخر تحديث: سبتمبر 2026</p>
+      <h1 data-i18n="subscription.heading">اشتراكي</h1>
+      <p data-i18n="subscription.sub">تابع حالة حسابك واشتراكك، وأكمل الدفع لتفعيل النشر على المنصة.</p>
     </div>
 
-    <div class="legal-content">
-      <h2 data-i18n="privacy.s1.heading">مقدمة</h2>
-      <p data-i18n="privacy.s1.body">نحترم في "مباشر" خصوصية مستخدمينا، وتوضح هذه السياسة نوع المعلومات التي نجمعها وكيفية استخدامها وحمايتها عند استخدامك للمنصة.</p>
+    <div class="listing-form-card auth-required-notice" id="subLoginNotice" style="display:none;">
+      <p data-i18n="subscription.loginNotice">يجب تسجيل الدخول لعرض بيانات اشتراكك.</p>
+      <div class="auth-required-actions">
+        <a class="btn btn-solid" href="login.html" data-i18n="auth.login">تسجيل الدخول</a>
+        <a class="btn btn-ghost" href="signup.html" data-i18n="auth.signup">إنشاء حساب</a>
+      </div>
+    </div>
 
-      <h2 data-i18n="privacy.s2.heading">المعلومات التي نجمعها</h2>
-      <p data-i18n="privacy.s2.body">نجمع المعلومات التي تقدمها مباشرة عند إنشاء حساب، مثل الاسم والبريد الإلكتروني ورقم الجوال، بالإضافة إلى تفاصيل الإعلانات التي تنشرها على المنصة.</p>
+    <div class="listing-form-card" id="subStatusCard" style="display:none;">
+      <div class="sub-status-row">
+        <span class="admin-badge-chip" id="subStageBadge"></span>
+        <span id="subStageDetail"></span>
+      </div>
 
-      <h2 data-i18n="privacy.s3.heading">كيف نستخدم معلوماتك</h2>
-      <p data-i18n="privacy.s3.body">نستخدم بياناتك لتشغيل حسابك، وعرض إعلاناتك للمستخدمين الآخرين، والتواصل معك بخصوص طلباتك، وتحسين خدمات المنصة.</p>
+      <div id="subTrialInfo" style="display:none;"></div>
+      <div id="subRejectedInfo" style="display:none;"></div>
 
-      <h2 data-i18n="privacy.s4.heading">مشاركة المعلومات</h2>
-      <p data-i18n="privacy.s4.body">لا نبيع بياناتك الشخصية لأطراف ثالثة. قد تُعرض بيانات التواصل التي تختار إظهارها في إعلانك للمستخدمين المهتمين فقط.</p>
+      <div id="subPaymentSection" style="display:none;">
+        <div class="form-section-title" data-i18n="subscription.paymentTitle">إكمال الدفع لتفعيل الاشتراك</div>
+        <p class="plan-intro" id="subPlanSummary"></p>
 
-      <h2 data-i18n="privacy.s5.heading">أمان البيانات</h2>
-      <p data-i18n="privacy.s5.body">نتخذ إجراءات معقولة لحماية بياناتك من الوصول غير المصرح به، مع العلم أن أي نظام تخزين إلكتروني لا يخلو من مخاطر أمنية بشكل كامل.</p>
+        <div class="payment-method-picker" id="paymentMethodPicker">
+          <label class="payment-method-option" data-method="bankak">
+            <input type="radio" name="paymentMethod" value="bankak" checked>
+            <span class="payment-method-name" data-i18n="subscription.method.bankak">بنكك (بنك الخرطوم)</span>
+          </label>
+          <label class="payment-method-option" data-method="ewallet">
+            <input type="radio" name="paymentMethod" value="ewallet">
+            <span class="payment-method-name" data-i18n="subscription.method.ewallet">محفظة إلكترونية</span>
+          </label>
+          <label class="payment-method-option" data-method="card">
+            <input type="radio" name="paymentMethod" value="card">
+            <span class="payment-method-name" data-i18n="subscription.method.card">Visa / Mastercard</span>
+          </label>
+          <label class="payment-method-option" data-method="banktransfer">
+            <input type="radio" name="paymentMethod" value="banktransfer">
+            <span class="payment-method-name" data-i18n="subscription.method.banktransfer">تحويل بنكي</span>
+          </label>
+          <label class="payment-method-option" data-method="gateway">
+            <input type="radio" name="paymentMethod" value="gateway">
+            <span class="payment-method-name" data-i18n="subscription.method.gateway">بوابة دفع إلكترونية</span>
+          </label>
+        </div>
 
-      <h2 data-i18n="privacy.s6.heading">ملفات تعريف الارتباط</h2>
-      <p data-i18n="privacy.s6.body">تستخدم المنصة تخزينًا محليًا في متصفحك لحفظ تفضيلاتك، مثل اللغة وحالة تسجيل الدخول، لتحسين تجربتك أثناء التصفح.</p>
+        <div class="form-status" id="subPaymentStatus"></div>
+        <button type="button" class="btn btn-solid" id="payNowBtn" style="width:100%;" data-i18n="subscription.payNowBtn">ادفع الآن</button>
+        <p class="admin-note" data-i18n="subscription.paymentSimNote">بيئة تجريبية: لا يتم تحصيل أي مبلغ فعلي، ويُستخدم هذا النموذج لمحاكاة عملية الدفع فقط.</p>
+      </div>
 
-      <h2 data-i18n="privacy.s7.heading">حقوقك</h2>
-      <p data-i18n="privacy.s7.body">يحق لك الاطلاع على بياناتك أو تعديلها أو طلب حذف حسابك في أي وقت من خلال التواصل مع فريق الدعم.</p>
-
-      <h2 data-i18n="privacy.s8.heading">التعديلات على هذه السياسة</h2>
-      <p data-i18n="privacy.s8.body">قد نقوم بتحديث سياسة الخصوصية من وقت لآخر، وسيتم نشر أي تغييرات جوهرية على هذه الصفحة مع تاريخ التحديث.</p>
-
-      <h2 data-i18n="privacy.s9.heading">تواصل معنا</h2>
-      <p data-i18n="privacy.s9.body">لأي استفسار بخصوص هذه السياسة أو بياناتك الشخصية، يمكنك التواصل مع فريق الدعم الفني عبر المنصة.</p>
-
-      <h2 data-i18n="privacy.s10.heading">الرقم الوطني وصورة الهوية</h2>
-      <p data-i18n="privacy.s10.body">يُستخدم الرقم الوطني وصورة الهوية التي تقدّمها عند التسجيل حصريًا للتحقق من صحة بياناتك ومراجعتها من قبل إدارة المنصة، ولأغراض قانونية فقط. لا تتم مشاركة هذه البيانات مع أي طرف خارجي، ولا تُستخدم لأي غرض تسويقي.</p>
+      <div id="subActiveInfo" style="display:none;"></div>
     </div>
   </div>
 </main>

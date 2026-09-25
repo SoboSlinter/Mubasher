@@ -13,8 +13,12 @@
 
 <header class="listing-header">
   <div class="wrap">
-    <div class="brand"><span class="brand-mark">م</span> <span data-i18n="brand.name">مباشر</span></div>
+    <div class="brand"><span class="brand-mark" id="brandAvatar">م</span> <span data-i18n="brand.name">مباشر</span></div>
     <div style="display:flex; align-items:center; gap:12px;">
+      <div class="header-user-badge" id="headerUserBadge">
+        <span class="header-user-avatar" id="headerUserAvatar">م</span>
+        <span class="header-user-name" id="headerUserName"></span>
+      </div>
       <button type="button" class="btn btn-ghost lang-toggle" id="langToggle">English</button>
       <a class="btn btn-ghost" href="index.html" data-i18n="auth.backHomeShort">العودة إلى الرئيسية</a>
     </div>
@@ -34,6 +38,14 @@
       <div class="auth-required-actions">
         <a class="btn btn-solid" href="login.html" data-i18n="auth.login">تسجيل الدخول</a>
         <a class="btn btn-ghost" href="signup.html" data-i18n="auth.signup">إنشاء حساب</a>
+      </div>
+    </div>
+
+    <!-- يظهر عندما يكون الحساب غير مفعّل بعد (بانتظار المراجعة أو انتهت التجربة) -->
+    <div class="listing-form-card auth-required-notice" id="subscriptionRequiredNotice" style="display:none;">
+      <p id="subscriptionRequiredMessage"></p>
+      <div class="auth-required-actions">
+        <a class="btn btn-solid" href="subscription.html" data-i18n="subscription.goToSubscriptionBtn">إدارة الاشتراك</a>
       </div>
     </div>
 
@@ -70,7 +82,7 @@
             </div>
             <div class="form-field" id="priceField">
               <label for="price" data-i18n="listingPage.priceLabel">السعر (بالجنيه السوداني)</label>
-              <input type="number" id="price" placeholder="2500000" min="0">
+              <input type="text" inputmode="numeric" id="price" placeholder="2,500,000">
               <span class="error-msg" data-i18n="listingPage.priceError">الرجاء إدخال سعر صحيح</span>
             </div>
             <div class="form-field" id="cityField" style="grid-column:1 / -1;">
@@ -83,6 +95,20 @@
                 <option value="madani" data-i18n="city.madani">مدني</option>
                 <option value="portsudan" data-i18n="city.portsudan">بورتسودان</option>
                 <option value="kassala" data-i18n="city.kassala">كسلا</option>
+                <option value="elobeid" data-i18n="city.elobeid">الأبيض</option>
+                <option value="nyala" data-i18n="city.nyala">نيالا</option>
+                <option value="elfasher" data-i18n="city.elfasher">الفاشر</option>
+                <option value="elgeneina" data-i18n="city.elgeneina">الجنينة</option>
+                <option value="kosti" data-i18n="city.kosti">كوستي</option>
+                <option value="sennar" data-i18n="city.sennar">سنار</option>
+                <option value="eddamazin" data-i18n="city.eddamazin">الدمازين</option>
+                <option value="atbara" data-i18n="city.atbara">عطبرة</option>
+                <option value="dongola" data-i18n="city.dongola">دنقلا</option>
+                <option value="gadarif" data-i18n="city.gadarif">القضارف</option>
+                <option value="shendi" data-i18n="city.shendi">شندي</option>
+                <option value="kadugli" data-i18n="city.kadugli">كادقلي</option>
+                <option value="zalingei" data-i18n="city.zalingei">زالنجي</option>
+                <option value="eddamer" data-i18n="city.eddamer">الدامر</option>
               </select>
               <span class="error-msg" data-i18n="listingPage.cityError">الرجاء اختيار المدينة</span>
             </div>
@@ -209,7 +235,7 @@
               </div>
               <div class="form-field" id="carOdometerField">
                 <label for="carOdometer" data-i18n="listingPage.odometerLabel">عداد الكيلومترات (كم)</label>
-                <input type="number" id="carOdometer" min="0" placeholder="45000">
+                <input type="text" inputmode="numeric" id="carOdometer" placeholder="45,000">
                 <span class="error-msg" data-i18n="listingPage.odometerError">الرجاء إدخال قراءة عداد الكيلومترات</span>
               </div>
               <div class="form-field" id="carRegistrationField" style="grid-column:1 / -1;">
@@ -242,7 +268,7 @@
               </div>
               <div class="form-field" id="motoOdometerField">
                 <label for="motoOdometer" data-i18n="listingPage.odometerLabel">عداد الكيلومترات (كم)</label>
-                <input type="number" id="motoOdometer" min="0" placeholder="8000">
+                <input type="text" inputmode="numeric" id="motoOdometer" placeholder="8,000">
                 <span class="error-msg" data-i18n="listingPage.odometerError">الرجاء إدخال قراءة عداد الكيلومترات</span>
               </div>
             </div>
@@ -254,6 +280,7 @@
             <input type="file" id="photos" accept="image/*" multiple>
             <span class="error-msg" data-i18n="listingPage.photosError">الرجاء إرفاق صورة واحدة على الأقل</span>
             <span class="hint" data-i18n="listingPage.photosHintRequired">يجب إرفاق صورة واحدة على الأقل لنشر الإعلان.</span>
+            <div id="currentPhotosPreview"></div>
           </div>
 
           <div class="form-section-title" data-i18n="listingPage.descTitle">وصف الإعلان</div>
@@ -272,6 +299,51 @@
     </div>
   </div>
 </main>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="modal profile-modal">
+    <button type="button" class="modal-close" id="closeProfile">×</button>
+    <h3 data-i18n="profile.title">الملف الشخصي</h3>
+
+    <div class="profile-photo-row">
+      <div class="profile-photo-preview" id="profilePhotoPreview">م</div>
+      <div>
+        <label class="btn btn-ghost profile-photo-btn" for="profilePhotoInput" data-i18n="profile.changePhotoBtn">تغيير الصورة</label>
+        <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+      </div>
+    </div>
+    <div class="profile-account-info">
+      <div class="profile-info-name" id="profileName"></div>
+      <div class="profile-info-email" id="profileEmail"></div>
+    </div>
+
+    <div class="form-status" id="profileStatus"></div>
+
+    <div class="form-field" id="profileAddressField">
+      <label for="profileAddress" data-i18n="profile.addressLabel">العنوان</label>
+      <input type="text" id="profileAddress" data-i18n-placeholder="profile.addressPlaceholder" placeholder="أدخل عنوانك">
+    </div>
+    <button type="button" class="btn btn-solid" id="saveAddressBtn" data-i18n="profile.saveAddressBtn" style="width:100%; margin-bottom:22px;">حفظ العنوان</button>
+
+    <div class="form-section-title" data-i18n="profile.changePasswordTitle" style="margin-top:0;">تغيير كلمة المرور</div>
+    <div class="form-field" id="currentPasswordField">
+      <label for="currentPassword" data-i18n="profile.currentPasswordLabel">كلمة المرور الحالية</label>
+      <input type="password" id="currentPassword">
+      <span class="error-msg" data-i18n="profile.currentPasswordError">كلمة المرور الحالية غير صحيحة</span>
+    </div>
+    <div class="form-field" id="newPasswordProfileField">
+      <label for="newPasswordProfile" data-i18n="profile.newPasswordLabel">كلمة المرور الجديدة</label>
+      <input type="password" id="newPasswordProfile">
+      <span class="error-msg" data-i18n="error.password">كلمة المرور يجب ألا تقل عن 6 أحرف</span>
+    </div>
+    <div class="form-field" id="confirmNewPasswordProfileField">
+      <label for="confirmNewPasswordProfile" data-i18n="profile.confirmNewPasswordLabel">تأكيد كلمة المرور الجديدة</label>
+      <input type="password" id="confirmNewPasswordProfile">
+      <span class="error-msg" data-i18n="error.confirmPassword">كلمتا المرور غير متطابقتين</span>
+    </div>
+    <button type="button" class="btn btn-solid" id="savePasswordBtn" data-i18n="profile.savePasswordBtn" style="width:100%;">تحديث كلمة المرور</button>
+  </div>
+</div>
 
 <script src="script.js"></script>
 
